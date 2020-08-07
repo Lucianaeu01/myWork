@@ -1,0 +1,126 @@
+CREATE DATABASE mywork;
+
+CREATE TABLE tb_estado (
+pk_id INT PRIMARY KEY AUTO_INCREMENT,
+nome_estado VARCHAR(40) NOT NULL,
+UF CHAR(2) NOT NULL
+);
+
+
+CREATE TABLE tb_cidade (
+pk_id INT PRIMARY KEY AUTO_INCREMENT,
+nome_cidade VARCHAR(40) NOT NULL,
+fk_estado INT,
+CONSTRAINT FOREIGN KEY(fk_estado) REFERENCES tb_estado(pk_id) ON DELETE CASCADE ON UPDATE CASCADE 
+);
+
+CREATE TABLE tb_cliente (
+pk_id INT PRIMARY KEY AUTO_INCREMENT,
+nome VARCHAR(50) NOT NULL,
+data_nascimento DATE NOT NULL,
+email VARCHAR(50),
+telefone CHAR(15),
+celular CHAR(15),
+fk_cidade INT,
+CONSTRAINT FOREIGN KEY cons_cliente_cidade (fk_cidade) REFERENCES tb_cidade(pk_id) ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+CREATE TABLE tb_prestador (
+pk_id INT PRIMARY KEY AUTO_INCREMENT,
+nome VARCHAR(50) NOT NULL,
+data_nascimento DATE NOT NULL,
+email VARCHAR(50),
+telefone CHAR(15),
+celular CHAR(15) NOT NULL,
+fk_cidade INT,
+CONSTRAINT FOREIGN KEY cons_prestador_cidade (fk_cidade) REFERENCES tb_cidade(pk_id) ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+CREATE TABLE rl_prestador_servico (
+fk_prestador INT,
+fk_servicos_prestados INT
+
+
+);
+
+CREATE TABLE tb_servico_prestado (
+pk_id INT PRIMARY KEY AUTO_INCREMENT,
+tipos_servicos VARCHAR(50) NOT NULL
+);
+
+CREATE TABLE tb_atendimento (
+pk_id INT PRIMARY KEY AUTO_INCREMENT,
+fk_cliente INT,
+fk_prestador INT,
+fk_servico_prestado INT
+
+PESQUISAR CONSTRAINT deve setar NULL no ON DELETE...
+
+
+);
+
+INSERT INTO tb_estado(nome_estado, UF)
+VALUES
+('São Paulo', 'SP');
+
+INSERT INTO tb_cidade(nome_cidade, fk_estado)
+VALUES
+('Aparecida', 1),
+('Arapeí', 1),
+('Areias', 1),
+('Bananal', 1),
+('Caçapava', 1),
+('Cachoeira Paulista', 1),
+('Campos do Jordão', 1),
+('Canas', 1),
+('Caraguatatuba', 1),
+('Cruzeiro', 1),
+('Cunha', 1),
+('Guaratinguetá', 1),
+('Igaratá', 1),
+('Ilhabela', 1),
+('Jacareí', 1),
+('Jambeiro', 1),
+('Lagoinha', 1),
+('Lavrinhas', 1),
+('Lorena', 1),
+('Monteiro Lobato', 1),
+('Natividade da Serra', 1),
+('Paraibuna', 1),
+('Pindamonhangaba', 1),
+('Piquete', 1),
+('Potim', 1),
+('Queluz', 1),
+('Redenção da Serra', 1),
+('Roseira', 1),
+('Santa Branca', 1),
+('Santo Antonio do Pinhal', 1),
+('São Bento do Sapucaí', 1),
+('São José do Barreiro', 1),
+('São José dos Campos', 1),
+('São Luiz do Paraitinga', 1),
+('São Sebastião', 1),
+('Silveiras', 1),
+('Taubaté', 1),
+('Tremembé', 1),
+('Ubatuba', 1);
+
+
+
+INSERT INTO tb_servico_prestado (tipos_servicos) VALUES
+('pintura'),
+('elétrica');
+
+INSERT INTO tb_cliente (nome,data_nascimento,email,telefone,celular) VALUE
+('Glauco Santos','1986-04-14','glaucao@gmail.com','9999-9999','8888-8888');
+
+INSERT INTO tb_prestador (nome,data_nascimento,email,telefone,celular) VALUE
+('Luis Roberto','2001-01-27','luis@gmail.com','9999-9999','8888-8888');
+
+INSERT INTO rl_prestador_servico (fk_prestador,fk_servico_prestado) VALUE
+(2,1),
+(2,2),
+(1,1),
+(1,2);
+
+
