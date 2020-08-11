@@ -1,6 +1,6 @@
 <?php 
 if($_POST) {
-    include('includes/conexaoMywork.php');
+    include('../includes/conexaoMywork.php');
     
     $sql = "UPDATE tb_cidade SET nome_cidade = '".$_POST["cidade"]."', fk_estado = ".$_POST["uf"]." WHERE pk_id = ".$_POST["pk_id"].";"; 
     

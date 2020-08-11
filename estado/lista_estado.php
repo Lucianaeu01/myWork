@@ -1,5 +1,5 @@
 <?php
-    include_once("includes/conexaoMywork.php");
+    include_once("../includes/conexaoMywork.php");
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
