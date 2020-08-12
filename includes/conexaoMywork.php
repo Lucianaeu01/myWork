@@ -1,9 +1,9 @@
 <?php
 
-$host = "localhost";
-$user = "root";
-$pass = "";
-$dbname = "mywork";
+$host = "192.185.216.45";
+$user = "glauc751_mywork";
+$pass = "myWork@Sena2020";
+$dbname = "glauc751_mywork";
 
 $conecta = mysqli_connect($host,$user,$pass);
 

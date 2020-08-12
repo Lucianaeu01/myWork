@@ -1,6 +1,6 @@
 <?php 
 if($_POST) {
-    include('includes/conexaoMywork.php');
+    include('../includes/conexaoMywork.php');
     
     $sql = "INSERT INTO tb_estado (nome_estado,UF) VALUES ('".$_POST["estado"]."','".$_POST["uf"]."');";
     
