@@ -1,5 +1,5 @@
 <?php
-    include_once("includes/conexaoMywork.php");
+    include_once("../includes/conexaoMywork.php");
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -14,7 +14,6 @@
     .icone:hover {
         background-color: skyblue;
     }
-
 </style>
 
 <body class="bg-dark">
@@ -42,6 +41,7 @@
                     <th>Ação</th>
                 </tr>
                 <?php 
+                
                 $sql = mysqli_query($conecta,"SELECT tb_cliente.pk_id, nome, DATE_FORMAT(data_nascimento,'%d/%m/%Y') AS data_nascimento, cpf, email, telefone, celular, nome_cidade FROM tb_cliente LEFT JOIN tb_cidade ON tb_cidade.pk_id = tb_cliente.fk_cidade ORDER BY tb_cliente.nome");
                 while($row = mysqli_fetch_object($sql)){
             ?>

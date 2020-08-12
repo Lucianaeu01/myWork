@@ -1,5 +1,5 @@
 <?php 
-include("includes/conexaoMywork.php");
+include("../includes/conexaoMywork.php");
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">

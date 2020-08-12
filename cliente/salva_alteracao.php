@@ -1,6 +1,6 @@
 <?php 
 if($_POST) {
-    include('includes/conexaoMywork.php');
+    include('../includes/conexaoMywork.php');
     
    $up = "UPDATE tb_cliente SET nome = '".$_POST["nome"]."', data_nascimento = '".$_POST["data_nascimento"]."', email = '".$_POST["email"]."', telefone = '".$_POST["telefone"]."', celular = '".$_POST["telefone"]."', fk_cidade = ".$_POST["cidade"]." WHERE pk_id = ".$_POST["pk_id"];
     
