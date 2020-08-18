@@ -7,7 +7,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../bootstrap/bootstrap.css">
+    <link rel="stylesheet" href="../css/bootstrap.css">
     <title>Lista de Clientes</title>
 </head>
 <style>
@@ -22,7 +22,7 @@
             <div class="col-12">
                 <form method="post" action="inserir_cliente.php">
                     <button class="btn btn-light icone">
-                        <input type="image" width="40" height="40" src="imagens/inserir_cliente.png" data-toggle="tooltip" data-placement="top" title="Inserir novo cliente">
+                        <input type="image" width="40" height="40" src="../imagens/inserir_cliente.png" data-toggle="tooltip" data-placement="top" title="Inserir novo cliente">
                     </button>
                 </form>
             </div>
@@ -110,7 +110,7 @@
     </div>
 
     <script type="text/javascript" src="../js/jquery-3.5.1.min.js"></script>
-    <script type="text/javascript" src="../bootstrap/bootstrap.bundle.js"></script>
+    <script type="text/javascript" src="../css/bootstrap.bundle.js"></script>
 
     <script>
         $(function() {
