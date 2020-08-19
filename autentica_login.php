@@ -7,7 +7,7 @@
         $categoria = "tb_" . $_POST['userCategoria'];
         $senha = $_POST['userPassword'];
         
-        $sql = "SELECT * FROM $categoria WHERE email = '$login' AND senha = '".md5($senha)."'";
+        $sql = "SELECT * FROM $categoria WHERE email = '$login' AND senha = '".sha1(md5($senha))."'";
         
         $rs = mysqli_query($conecta,$sql);
         

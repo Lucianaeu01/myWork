@@ -45,7 +45,7 @@
                 <td><?php echo $row->pk_id;?></td>
                 <td><?php echo $row->nome_cidade;?></td>
                 <td><?php echo $row->UF;?></td>
-                <td><a href="alterar_cidade.php?pk_id=<?php echo $row->pk_id ?>">
+                <td><a href="inserir_cidade.php?id=<?php echo base64_encode($row->pk_id)?>">
                         <button type="submit" class="btn btn-info">[ alterar ]</button>
                     </a>
                     <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modalExcluir" data-id="<?php echo $row->pk_id;?>">

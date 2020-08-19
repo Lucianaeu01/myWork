@@ -33,8 +33,8 @@
                     <th>#</th>
                     <th>Nome</th>
                     <th>Nascimento</th>
-                    <th>CPF</th>
                     <th>Email</th>
+                    <th>CPF</th>
                     <th>Telefone</th>
                     <th>Celular</th>
                     <th>Cidade</th>
@@ -56,7 +56,7 @@
                 <td><?php echo $row->celular;?></td>
                 <td><?php echo $row->nome_cidade;?></td>
                 <td>
-                    <a href="alterar_cliente.php?pk_id=<?php echo $row->pk_id ?>">
+                    <a href="inserir_cliente.php?id=<?php echo base64_encode($row->pk_id)?>">
                         <button type="submit" class="btn btn-info">[ alterar ]</button>
                     </a>
                     <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modalExcluir" data-id="<?php echo $row->pk_id;?>">[ excluir ]</button>
