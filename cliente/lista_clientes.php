@@ -1,5 +1,5 @@
 <?php
-    include_once("includes/conexaoMywork.php");
+    include_once("../includes/conexaoMywork.php");
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -7,14 +7,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../bootstrap/bootstrap.css">
+    <link rel="stylesheet" href="../css/bootstrap.css">
     <title>Lista de Clientes</title>
 </head>
 <style>
     .icone:hover {
         background-color: skyblue;
     }
-
 </style>
 
 <body class="bg-dark">
@@ -23,7 +22,7 @@
             <div class="col-12">
                 <form method="post" action="inserir_cliente.php">
                     <button class="btn btn-light icone">
-                        <input type="image" width="40" height="40" src="imagens/inserir_cliente.png" data-toggle="tooltip" data-placement="top" title="Inserir novo cliente">
+                        <input type="image" width="40" height="40" src="../imagens/inserir_cliente.png" data-toggle="tooltip" data-placement="top" title="Inserir novo cliente">
                     </button>
                 </form>
             </div>
@@ -34,14 +33,15 @@
                     <th>#</th>
                     <th>Nome</th>
                     <th>Nascimento</th>
-                    <th>CPF</th>
                     <th>Email</th>
+                    <th>CPF</th>
                     <th>Telefone</th>
                     <th>Celular</th>
                     <th>Cidade</th>
                     <th>Ação</th>
                 </tr>
                 <?php 
+                
                 $sql = mysqli_query($conecta,"SELECT tb_cliente.pk_id, nome, DATE_FORMAT(data_nascimento,'%d/%m/%Y') AS data_nascimento, cpf, email, telefone, celular, nome_cidade FROM tb_cliente LEFT JOIN tb_cidade ON tb_cidade.pk_id = tb_cliente.fk_cidade ORDER BY tb_cliente.nome");
                 while($row = mysqli_fetch_object($sql)){
             ?>
@@ -56,7 +56,7 @@
                 <td><?php echo $row->celular;?></td>
                 <td><?php echo $row->nome_cidade;?></td>
                 <td>
-                    <a href="alterar_cliente.php?pk_id=<?php echo $row->pk_id ?>">
+                    <a href="inserir_cliente.php?id=<?php echo base64_encode($row->pk_id)?>">
                         <button type="submit" class="btn btn-info">[ alterar ]</button>
                     </a>
                     <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modalExcluir" data-id="<?php echo $row->pk_id;?>">[ excluir ]</button>
@@ -110,7 +110,7 @@
     </div>
 
     <script type="text/javascript" src="../js/jquery-3.5.1.min.js"></script>
-    <script type="text/javascript" src="../bootstrap/bootstrap.bundle.js"></script>
+    <script type="text/javascript" src="../css/bootstrap.bundle.js"></script>
 
     <script>
         $(function() {

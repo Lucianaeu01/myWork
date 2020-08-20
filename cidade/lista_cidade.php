@@ -6,7 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../bootstrap/bootstrap.css">
+    <link rel="stylesheet" href="../css/bootstrap.css">
     <title>Lista de Cidade</title>
 </head>
 
@@ -23,7 +23,7 @@
            <div class="col-12">
                <form method="post" action="inserir_cidade.php">
                <button class="btn btn-light icone">
-                   <input type="image" width="40" height="40" src="imagens/inserir_local2.png" data-toggle="tooltip" data-placement="top" title="Inserir nova cidade">
+                   <input type="image" width="40" height="40" src="../imagens/inserir_local2.png" data-toggle="tooltip" data-placement="top" title="Inserir nova cidade">
                </button>
                </form>
            </div>
@@ -45,7 +45,7 @@
                 <td><?php echo $row->pk_id;?></td>
                 <td><?php echo $row->nome_cidade;?></td>
                 <td><?php echo $row->UF;?></td>
-                <td><a href="alterar_cidade.php?pk_id=<?php echo $row->pk_id ?>">
+                <td><a href="inserir_cidade.php?id=<?php echo base64_encode($row->pk_id)?>">
                         <button type="submit" class="btn btn-info">[ alterar ]</button>
                     </a>
                     <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modalExcluir" data-id="<?php echo $row->pk_id;?>">
@@ -100,7 +100,7 @@
     </div>
 
     <script type="text/javascript" src="../js/jquery-3.5.1.min.js"></script>
-    <script type="text/javascript" src="../bootstrap/bootstrap.bundle.js"></script>
+    <script type="text/javascript" src="../css/bootstrap.bundle.js"></script>
 
     <script>
         $(function() {

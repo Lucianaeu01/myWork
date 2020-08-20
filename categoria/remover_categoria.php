@@ -1,7 +1,7 @@
 <?php 
 if(!empty($_POST["pk_id"])) {
     include('../includes/conexaoMywork.php');
-    $rs = "DELETE FROM tb_estado WHERE pk_id = ". $_POST["pk_id"];
+    $rs = "DELETE FROM tb_categoria WHERE pk_id = ". $_POST["pk_id"];
     
     mysqli_query($conecta,$rs);
     
@@ -12,5 +12,5 @@ if(!empty($_POST["pk_id"])) {
     }
 }
 
-header('Location: lista_estado.php?msg='.$msg);
+header('Location: index.php?msg='.$msg);
 ?>

@@ -1,27 +1,25 @@
 <?php 
 if($_POST) {
     include('../includes/conexaoMywork.php');
-    
     if(empty($_POST["pk_id"])) {
+        $sql = "INSERT INTO tb_categoria (categoria,habilita) VALUES ('".$_POST["categoria"]."','".$_POST["habilita"]."');";
         
-        $sql = "INSERT INTO tb_cidade (nome_cidade, fk_estado) VALUES ('".$_POST["cidade"]."',".$_POST["estado"].");";
-    
         mysqli_query($conecta,$sql);
-   
+    
         $msg = base64_encode("Registro inserido com sucesso!");
     
-    } else {
-        $sql = "UPDATE tb_cidade SET 
-        nome_cidade = '".$_POST["cidade"]."',
-        fk_estado = '".$_POST["estado"]."'
+    }else {
+    $sql = "UPDATE tb_categoria SET 
+        categoria = '".$_POST["categoria"]."',
+        UF = '".$_POST["uf"]."'
         WHERE pk_id = " . base64_decode($_POST["pk_id"]);
 
         $rs = mysqli_query($conecta,$sql);
 
-        $msg = base64_encode("Registro atualizado com sucesso!");
-        } 
-}else {
+        $msg = base64_encode("Registro atualizado com sucesso!"); 
+    }
+}else{
     $msg = base64_encode("Falha ao tentar inserir o registro! Tente novamente mais tarde.");
 }
-header('Location: lista_cidade.php?msg='.$msg);
+header('Location: index.php?msg='.$msg);
 ?>

@@ -4,16 +4,16 @@ if($_POST) {
     
     if(empty($_POST["pk_id"])) {
         
-        $sql = "INSERT INTO tb_cidade (nome_cidade, fk_estado) VALUES ('".$_POST["cidade"]."',".$_POST["estado"].");";
+        $sql = "INSERT INTO tb_servico (servico, fk_categoria) VALUES ('".$_POST["servico"]."',".$_POST["categoria"].");";
     
         mysqli_query($conecta,$sql);
    
         $msg = base64_encode("Registro inserido com sucesso!");
     
     } else {
-        $sql = "UPDATE tb_cidade SET 
-        nome_cidade = '".$_POST["cidade"]."',
-        fk_estado = '".$_POST["estado"]."'
+        $sql = "UPDATE tb_servico SET 
+        servico = '".$_POST["servico"]."',
+        fk_categoria = '".$_POST["categoria"]."'
         WHERE pk_id = " . base64_decode($_POST["pk_id"]);
 
         $rs = mysqli_query($conecta,$sql);
@@ -23,5 +23,5 @@ if($_POST) {
 }else {
     $msg = base64_encode("Falha ao tentar inserir o registro! Tente novamente mais tarde.");
 }
-header('Location: lista_cidade.php?msg='.$msg);
+header('Location: lista_servico.php?msg='.$msg);
 ?>
