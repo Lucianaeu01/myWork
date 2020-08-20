@@ -1,13 +1,13 @@
 <?php 
     session_start();
-    $limite = 30; // 30 segundos de limite de tempo da sessão
+    $limite = 600; // 10 minutos de limite de tempo da sessão
     $tempo = $_SESSION['tempo'];
     $agora = time();
 
     $tempodif= $agora - $tempo;
 
     if($tempodif <= $limite){
-        echo "sessão continua aberta";
+        //echo "sessão continua aberta";
         $_SESSION['tempo'] = time();
         if(!empty($_SESSION['token']) && !empty($_COOKIE['token']) && $_SESSION['token']===$_COOKIE['token']){
             //sessão aberta

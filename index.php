@@ -9,6 +9,7 @@ include_once('includes/autenticacao.php');
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel= "stylesheet" href="bootstrap/bootstrap.css" />
+    <link rel= "stylesheet" href="fontawesome-free-5.14.0-web/css/all.css" />
     
     <title>Projeto Integrador</title>
 </head>
@@ -18,10 +19,37 @@ include_once('includes/autenticacao.php');
     <div class="box-parent-login">
         <div class="well bg-white box-login">
             <h1 class="ls-login-logo">MY WORK - BEM VINDO!</h1>
-            <form role="form" method="POST" action="login.php">
+            
         </div>
     </div>
 </div>
+    <div class ="row">
+        <div class="col-12">
+            <h3>CADASTROS</h3>
+        </div>
+        <?php
+        if($_SESSION["categoria"]=="prestador") { ?>
+        <div class="col-12 col-md-6 border text-center">
+            <span class="badge badge-primary">
+                <i class="fas fa-user"> </i>
+            </span>
+            <br>
+            CLIENTES
+            </div>
+        <?php } ?>
+        <?php 
+        if($_SESSION["categoria"]=="cliente") { ?>
+        <div class="col-12 col-md-6 border text-center">
+            <span class="badge badge-info">
+                <i class="fas fa-tools"></i>
+            </span>
+            <br>
+            PRESTADOR DE SERVIÇO 
+            </div>
+        <?php } ?>
+        </div> 
+    </div>
+        
     <div class="modal fade" id="modalMensagem" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">

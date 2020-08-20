@@ -5,14 +5,16 @@ if(!empty($_POST)){
     session_start();
     $login = $_POST['userLogin'];
     $senha = $_POST['userPassword'];
+    $categoria = "tb_" . $_POST['userCategoria'];
 
-    $sql = "SELECT * FROM tb_cliente WHERE email = '$login' AND senha = '".md5($senha)."'";
+    $sql = "SELECT * FROM $categoria WHERE email = '$login' AND senha = '".md5($senha)."'";
     
     $result = mysqli_query($conecta,$sql);
     
     if(mysqli_num_rows($result) > 0) {
         $row = mysqli_fetch_object($result);
         $token = md5(date("YmdHis").$row->email);
+        $_SESSION['categoria'] = $_POST["userCategoria"];
         $_SESSION['tempo'] = time();
         $_SESSION['token'] = $token;
         setcookie('token',$token,time() + (86400 * 30), "/");
@@ -64,11 +66,22 @@ if(!empty($_POST)){
                         <input class="form-control ls-login-bg-password input-lg" id="userPassword" name="userPassword" type="password" aria-label="Senha" placeholder="Senha" required>
                     </div>
                     <br>
+                    <div class="form-group">
+                        <label for="userCategoria">Categoria</label>
+                        <select id="userCategoria" name="userCategoria" class="form-control" required>
+                            <option value="">--Selecione--</option>
+                            <option value="cliente">Cliente</option>
+                            <option value="prestador">Prestador de Serviço</option>
+                        </select>
+                    </div>
                     <a href="#" class="ls-login-forgot">Esqueci minha senha</a>
                     <br>
                     <input type="submit" value="Entrar" class="btn btn-primary btn-lg btn-block">
                     <!--<button type="submit" name="submit" value="Entrar">LOGIN</button>-->
-                    <p class="txt-center ls-login-signup">Não possui um usuário na MY WORK?
+                    <p class="txt-center ls-login-signup">É cliente e não possui um usuário na MY WORK?
+                        <a href="#">Cadastre-se agora</a>
+                        <br>
+                        É prestador e não possui um usuário na MY WORK?
                         <a href="#">Cadastre-se agora</a>
                     </p>
      
