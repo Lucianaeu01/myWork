@@ -1,5 +1,6 @@
 <?php
     include_once("../includes/conexaoMywork.php");
+    include('../includes/autenticacao.php');
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -7,6 +8,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/bootstrap.css">
+    <link rel= "stylesheet" href="../fontawesome-free-5.14.0-web/css/all.css" />
     <title>Lista de Serviço</title>
 </head>
 
@@ -23,7 +25,7 @@
            <div class="col-12">
                <form method="post" action="inserir_servico.php">
                <button class="btn btn-light icone">
-                   <input type="image" width="40" height="40" src="../imagens/inserir_local2.png" data-toggle="tooltip" data-placement="top" title="Inserir novo serviço">
+                   <input type="image" width="40" height="40" src="../imagens/inserir_servico2.png" data-toggle="tooltip" data-placement="top" title="Inserir novo serviço">
                </button>
                </form>
            </div>
@@ -46,19 +48,16 @@
                 <td><?php echo $row->pk_id;?></td>
                 <td><?php echo $row->servico;?></td>
                 <td><?php echo $row->categoria;?></td>
-                <td><?php 
-                    if($row->habilita == 'a') {
-                        echo "sim";
-                    } else {
-                        echo "não";
-                    }
-                    ?></td>
+                <td><?php if($row->habilita == "a"){
+                    echo '<i class="fas fa-check"></i>';
+                } ?></td>              
                 <td><a href="inserir_servico.php?id=<?php echo base64_encode($row->pk_id)?>">
                         <button type="submit" class="btn btn-info">[ alterar ]</button>
                     </a>
                     <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modalExcluir" data-id="<?php echo $row->pk_id;?>">
                         [ excluir ]
                     </button>
+                </td>
             </tr>
             <?php 
                 }

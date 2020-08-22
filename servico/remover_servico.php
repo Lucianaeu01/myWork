@@ -1,6 +1,7 @@
 <?php 
 if(!empty($_POST["pk_id"])) {
     include('../includes/conexaoMywork.php');
+    include('../includes/autenticacao.php');
     $rs = "DELETE FROM tb_servico WHERE pk_id = ". $_POST["pk_id"];
     
     mysqli_query($conecta,$rs);
@@ -12,5 +13,5 @@ if(!empty($_POST["pk_id"])) {
     }
 }
 
-header('Location: index.php?msg='.$msg);
+header('Location: index_servico.php?msg='.$msg);
 ?>

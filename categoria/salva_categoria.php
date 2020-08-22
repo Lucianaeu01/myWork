@@ -1,8 +1,13 @@
 <?php 
 if($_POST) {
     include('../includes/conexaoMywork.php');
+    if(!empty($_POST['habilita'])){
+        $habilita = "a";
+    }else{
+        $habilita = "i";
+    }
     if(empty($_POST["pk_id"])) {
-        $sql = "INSERT INTO tb_categoria (categoria,habilita) VALUES ('".$_POST["categoria"]."','".$_POST["habilita"]."');";
+        $sql = "INSERT INTO tb_categoria (categoria,habilita) VALUES ('".$_POST["categoria"]."','".$habilita."');";
         
         mysqli_query($conecta,$sql);
     
@@ -11,8 +16,9 @@ if($_POST) {
     }else {
     $sql = "UPDATE tb_categoria SET 
         categoria = '".$_POST["categoria"]."',
-        UF = '".$_POST["uf"]."'
+        habilita = '".$habilita."'
         WHERE pk_id = " . base64_decode($_POST["pk_id"]);
+        
 
         $rs = mysqli_query($conecta,$sql);
 
