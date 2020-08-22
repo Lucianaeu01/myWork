@@ -1,5 +1,6 @@
 <?php
     include_once("../includes/conexaoMywork.php");
+    //include('../includes/autenticacao.php');
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -8,6 +9,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/bootstrap.css">
+    <link rel= "stylesheet" href="../fontawesome-free-5.14.0-web/css/all.css" />
     <title>Lista de Categoria</title>
 </head>
 
@@ -24,7 +26,7 @@
             <div class="col-12">
                 <form method="post" action="inserir_categoria.php">
                     <button class="btn btn-light icone">
-                        <input type="image" width="40" height="40" src="../imagens/inserir_local2.png" data-toggle="tooltip" data-placement="top" title="Inserir nova categoria">
+                        <input type="image" width="40" height="40" src="../imagens/inserir_categoria.png" data-toggle="tooltip" data-placement="top" title="Inserir nova categoria">                        
                     </button>
                 </form>
 
@@ -46,7 +48,11 @@
             <tr class="bg-white">
                 <td><?php echo $row->pk_id;?></td>
                 <td><?php echo $row->categoria;?></td>
-                <td><?php echo $row->habilita;?></td>
+                <td><?php if($row->habilita == "a"){
+                    echo '<i class="fas fa-check"></i>';
+                } ?></td>              
+           
+
                 <td><a href="inserir_categoria.php?id=<?php echo base64_encode($row->pk_id) ?>">
                         <button type="submit" class="btn btn-info">[ alterar ]</button>
                     </a>
