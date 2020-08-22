@@ -1,6 +1,7 @@
 <?php 
-if(!empty($_POST["pk_id"])) {
     include('../includes/conexaoMywork.php');
+    include("../includes/autenticacao.php");
+if(!empty($_POST["pk_id"])) {
     $rs = "DELETE FROM tb_cliente WHERE pk_id = ". $_POST["pk_id"];
     
     mysqli_query($conecta,$rs);
@@ -12,5 +13,5 @@ if(!empty($_POST["pk_id"])) {
     }
 }
 
-header('Location: lista_clientes.php?msg='.$msg);
+header('Location: index.php?msg='.$msg);
 ?>

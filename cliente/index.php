@@ -1,15 +1,17 @@
 <?php
     include_once("../includes/conexaoMywork.php");
+    include("../includes/autenticacao.php");
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/bootstrap.css">
-    <title>Lista de Cidade</title>
+    <link rel="stylesheet" href="../fontawesome-free-5.14.0-web/css/all.css">
+    <title>Lista de Clientes</title>
 </head>
-
 <style>
     .icone:hover {
         background-color: skyblue;
@@ -19,47 +21,64 @@
 
 <body class="bg-dark">
     <div class="container"><br>
-       <div class="row">
-           <div class="col-12">
-               <form method="post" action="inserir_cidade.php">
-               <button class="btn btn-light icone">
-                   <input type="image" width="40" height="40" src="../imagens/inserir_local2.png" data-toggle="tooltip" data-placement="top" title="Inserir nova cidade">
-               </button>
-               </form>
-           </div>
-       </div><br>
+        <div class="row">
+            <div class="col-12">
+                <form method="post" action="inserir_cliente.php">
+                    <button class="btn btn-light icone">
+                        <input type="image" width="40" height="40" src="../imagens/inserir_cliente.png" data-toggle="tooltip" data-placement="top" title="Inserir novo cliente">
+                    </button>
+                </form>
+            </div>
+        </div><br>
         <table class="table">
             <thead class="thead-light">
                 <tr>
                     <th>#</th>
+                    <th>Nome</th>
+                    <th>Nascimento</th>
+                    <th>Email</th>
+                    <th>CPF</th>
+                    <th>Telefone</th>
+                    <th>Celular</th>
                     <th>Cidade</th>
-                    <th>Estado</th>
+                    <th>Habilita</th>
                     <th>Ação</th>
                 </tr>
                 <?php 
-                $sql = mysqli_query($conecta,"SELECT tb_cidade.pk_id, nome_cidade, UF FROM tb_cidade LEFT JOIN tb_estado ON tb_estado.pk_id = tb_cidade.fk_estado ORDER BY tb_cidade.pk_id");
+                
+                $sql = mysqli_query($conecta,"SELECT tb_cliente.pk_id, nome, DATE_FORMAT(data_nascimento,'%d/%m/%Y') AS data_nascimento, cpf, email, telefone, celular, habilita, nome_cidade, habilita FROM tb_cliente LEFT JOIN tb_cidade ON tb_cidade.pk_id = tb_cliente.fk_cidade ORDER BY tb_cliente.nome");
                 while($row = mysqli_fetch_object($sql)){
             ?>
             </thead>
             <tr class="bg-white">
                 <td><?php echo $row->pk_id;?></td>
+                <td><?php echo $row->nome;?></td>
+                <td><?php echo $row->data_nascimento;?></td>
+                <td><?php echo $row->email;?></td>
+                <td><?php echo $row->cpf;?></td>
+                <td><?php echo $row->telefone;?></td>
+                <td><?php echo $row->celular;?></td>
                 <td><?php echo $row->nome_cidade;?></td>
-                <td><?php echo $row->UF;?></td>
-                <td><a href="inserir_cidade.php?id=<?php echo base64_encode($row->pk_id)?>">
+                <td><?php 
+                    if($row->habilita == 'a') {
+                        echo '<i class="fas fa-check"></i>';
+                    }
+                    ?></td>
+                <td>
+                    <a href="inserir_cliente.php?id=<?php echo base64_encode($row->pk_id)?>">
                         <button type="submit" class="btn btn-info">[ alterar ]</button>
                     </a>
-                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modalExcluir" data-id="<?php echo $row->pk_id;?>">
-                        [ excluir ]
-                    </button>
+                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modalExcluir" data-id="<?php echo $row->pk_id;?>">[ excluir ]</button>
+                </td>
             </tr>
             <?php 
                 }
-            ?>
+                ?>
         </table>
         <div class="modal fade" id="modalExcluir" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
-                    <form method="post" action="remover_cidade.php">
+                    <form method="post" action="remover_cliente.php">
                         <div class="modal-header">
                             <h5 class="modal-title" id="exampleModalLabel">Aviso</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -78,7 +97,6 @@
                 </div>
             </div>
         </div>
-        
         <div class="modal fade" id="modalMensagem" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -116,7 +134,6 @@
             $('#modalMensagem').modal('show');
             <?php } ?>
         })
-        
 
     </script>
 

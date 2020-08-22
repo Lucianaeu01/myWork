@@ -4,16 +4,11 @@ include("../includes/conexaoMywork.php");
 include("../includes/autenticacao.php");
 
 if(!empty($_GET["id"])) {
-    $sql = "SELECT * FROM tb_cliente WHERE pk_id = " . base64_decode($_GET["id"]);
+    $sql = "SELECT * FROM tb_prestador WHERE pk_id = " . base64_decode($_GET["id"]);
     $rs = mysqli_query($conecta,$sql);
 
     if(mysqli_num_rows($rs)>0) {
         $row = mysqli_fetch_object($rs);
-        if($row->habilita == "a"){
-            echo $check = "checked";
-        }else {
-            echo $check = "";
-        }
     } else {
         $msg = base64_encode("Registro não encontrado!");
         $tipo = base64_encode("alert-danger");
@@ -46,8 +41,8 @@ if(!empty($_GET["id"])) {
         </div><br>
         <div class="row">
             <div class="col-12">
-                <form method="post" action="salva_cliente.php" enctype="multipart/form-data">
-                    <div class="custom-control custom-switch">
+                <form method="post" action="salva_prestador.php" enctype="multipart/form-data">
+                   <div class="custom-control custom-switch">
                         <input type="checkbox" class="custom-control-input" id="habilita" name="habilita" <?php echo $check ?>>
                         <label class="custom-control-label" for="habilita">Habilita</label>
                     </div>
@@ -133,30 +128,29 @@ if(!empty($_GET["id"])) {
                         <input type="hidden" name="pk_id" value="<?php echo $_GET["id"]?>">
                         <button type="submit" class="btn btn-primary">Salvar</button>
                         <button type="reset" class="btn btn-outline-danger">Limpar</button>
-                        <input type="button" src="index.php" class="btn btn-outline-secondary" value="Voltar">
                     </div>
                 </form>
             </div>
         </div>
     </div>
     <div class="modal fade" id="modalMensagem" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Aviso</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <?php echo base64_decode($_GET["msg"]); ?>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Aviso</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <?php echo base64_decode($_GET["msg"]); ?>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
     <script>
         $(document).ready(function() {
             $('.js-example-basic-multiple').select2();
@@ -164,12 +158,11 @@ if(!empty($_GET["id"])) {
 
     </script>
     <script>
-        $(function() {
-            <?php if(!empty($_GET["msg"])){ ?>
+    $(function () {
+       <?php if(!empty($_GET["msg"])){ ?>
             $('#modalMensagem').modal('show');
-            <?php } ?>
-        });
-
+        <?php } ?>
+    });
     </script>
 </body>
 

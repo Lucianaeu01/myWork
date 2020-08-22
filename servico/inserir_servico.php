@@ -54,7 +54,7 @@ if(!empty($_GET["id"])) {
                                 <?php
                             $rs1 = mysqli_query($conecta,"SELECT * FROM tb_categoria ORDER BY categoria");
                             while($row1 = mysqli_fetch_object($rs1)) {
-                                if($row->fk_estado == $row1->pk_id) {
+                                if($row->fk_categoria == $row1->pk_id) {
                                     $selected = "selected";
                                 } else {
                                     $selected = "";

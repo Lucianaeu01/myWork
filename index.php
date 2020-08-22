@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <?php
 include_once('includes/conexaoMywork.php');
 include_once('includes/autenticacao.php');
@@ -40,7 +39,6 @@ include_once('includes/autenticacao.php');
         <?php } ?>
         <?php 
         if($_SESSION["categoria"]=="cliente") { ?>
-=======
 <?php 
 include_once('includes/conexaoMywork.php');
 include_once('includes/autenticacao.php');
@@ -73,13 +71,11 @@ include_once('includes/autenticacao.php');
         <?php } ?>
         <?php
     if($_SESSION["categoria"]=="cliente") { ?>
->>>>>>> 3686e1a2627d5daf00651a180bcb19496fa1b47b
         <div class="col-12 col-md-6 border text-center">
             <span class="badge badge-info">
                 <i class="fas fa-tools"></i>
             </span>
             <br>
-<<<<<<< HEAD
             PRESTADOR DE SERVIÇO 
             </div>
         <?php } ?>

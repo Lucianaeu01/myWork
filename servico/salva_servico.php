@@ -23,5 +23,5 @@ if($_POST) {
 }else {
     $msg = base64_encode("Falha ao tentar inserir o registro! Tente novamente mais tarde.");
 }
-header('Location: lista_servico.php?msg='.$msg);
+header('Location: index.php?msg='.$msg);
 ?>
