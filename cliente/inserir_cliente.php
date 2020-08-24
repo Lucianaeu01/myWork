@@ -132,11 +132,10 @@ if(!empty($_GET["id"])) {
                     <div class="form-group">
                         <input type="hidden" name="pk_id" value="<?php echo $_GET["id"]?>">
                         <button type="submit" class="btn btn-primary">Salvar</button>
-                        <button type="reset" class="btn btn-outline-danger">Limpar</button>
+                        <button type="reset" class="btn btn-danger">Limpar</button>
                         <a href="index.php">
-                            <button type="button" class="btn btn-info">Voltar</button>
+                            <button type="button" class="btn btn-warning">Voltar</button>
                         </a>
-                        
                     </div>
                 </form>
             </div>
