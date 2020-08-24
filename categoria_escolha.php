@@ -35,13 +35,13 @@ if(!empty($_GET["id"])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel= "stylesheet" href="bootstrap/bootstrap.css" />
+    <link rel= "stylesheet" href="css/bootstrap.css" />
 
     <title>Categoria</title>
 </head>
 <body>
 <script type="text/javascript" src="js/jquery-3.5.1.min.js"></script>
-<script type="text/javascript" src="js/bootstrap.bundle.js"></script>
+<script type="text/javascript" src="css/bootstrap.bundle.js"></script>
 
 <div class = "container container-fluid"> 
     <div class="box-parent-login">
@@ -67,7 +67,7 @@ if(!empty($_GET["id"])) {
                             ?>
                         </select>    
                     </div>
-
+                    <br>
                     <div class="form-group">
                         <label for="servico">Serviço:</label>
                         <select class="form-control" id="servico" name="servico">
