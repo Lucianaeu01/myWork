@@ -63,6 +63,7 @@ CREATE TABLE tb_categoria (
 pk_id INT PRIMARY KEY AUTO_INCREMENT,
 status CHAR(1) NOT NULL,
 categoria VARCHAR(50) NOT NULL
+foto CHAR(50),
 )ENGINE=InnoDB;
 
 CREATE TABLE tb_servico_sugerido (

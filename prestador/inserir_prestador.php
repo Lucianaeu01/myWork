@@ -123,9 +123,24 @@ if(!empty($_GET["id"])) {
                                 </select>
                             </div>
                         </div>
+                         <div class="col-4">
+                            <div class="form-group">
+                                <label for="foto">Foto:</label>
+                                <input type="file" id="foto" name="foto"><br>
+                            </div>
+                        </div>
+                        <?php 
+                            if(!empty($row->foto)) { ?>
+                        <div class="col-2">
+                            <div class="form-group">
+                                <img src="../fotos/<?php echo $row->foto;?>" width="150">
+                            </div>
+                            <?php } ?>
+                        </div>
                     </div>
                     <div class="form-group">
                         <input type="hidden" name="pk_id" value="<?php echo $_GET["id"]?>">
+                        <input type="hidden" name="nome_foto" value="<?php echo $row->foto?>">
                         <button type="submit" class="btn btn-primary">Salvar</button>
                         <button type="reset" class="btn btn-danger">Limpar</button>
                         <a href="index.php">

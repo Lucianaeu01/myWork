@@ -4,6 +4,18 @@ $senhaConfirma  = $_POST["senha_confirma"];
 include('../includes/conexaoMywork.php');
 include("../includes/autenticacao.php");
 
+if($_FILES["foto"]["error"]<>4) {
+        $tipo = $_FILES["foto"]["type"];
+        $extensao = explode(".",$_FILES["foto"]["name"]);
+        $extensao = end($extensao);
+        $nome_foto = sha1($_FILES["foto"]["tmp_name"] . time() . uniqid()) . "." . $extensao;
+        
+        move_uploaded_file($_FILES["foto"]["tmp_name"],"../fotos/".$nome_foto);
+        
+    }else {
+        $nome_foto = $_POST["nome_foto"];
+    }
+
 if(!empty($_POST['habilita'])){
     $habilita = "a";
 }else {
@@ -18,7 +30,7 @@ if ($senha<>"") {
                 
             $senha = sha1(md5($_POST["senha"]));    
                 
-            $sql = "INSERT INTO tb_prestador (nome,data_nascimento,cpf,email,senha,telefone,celular,fk_cidade,habilita) VALUES    ('".$_POST["nome"]."','".$_POST["data_nascimento"]."','".$_POST["cpf"]."','".$_POST["email"]."','$senha','".$_POST["telefone"]."','".$_POST["celular"]."',".$_POST["cidade"].",'".$habilita."');"; 
+            $sql = "INSERT INTO tb_prestador (nome,data_nascimento,cpf,email,senha,telefone,celular,fk_cidade,habilita,foto) VALUES    ('".$_POST["nome"]."','".$_POST["data_nascimento"]."','".$_POST["cpf"]."','".$_POST["email"]."','$senha','".$_POST["telefone"]."','".$_POST["celular"]."',".$_POST["cidade"].",'".$habilita."','$nome_foto');"; 
             
             mysqli_query($conecta,$sql);
         
@@ -34,7 +46,8 @@ if ($senha<>"") {
                 telefone = '".$_POST["telefone"]."',
                 celular = '".$_POST["celular"]."',
                 fk_cidade = '".$_POST["cidade"]."',
-                habilita = '".$habilita."'
+                habilita = '".$habilita."',
+                foto = '".$nome_foto."'
                 WHERE pk_id = " . base64_decode($_POST["pk_id"]);
         
                 $rs = mysqli_query($conecta,$sql);
@@ -58,7 +71,8 @@ if ($senha<>"") {
             telefone = '".$_POST["telefone"]."',
             celular = '".$_POST["celular"]."',
             fk_cidade = '".$_POST["cidade"]."',
-            habilita = '".$habilita."'
+            habilita = '".$habilita."',
+            foto = '".$nome_foto."'
             WHERE pk_id = " . base64_decode($_POST["pk_id"]); 
     
             $rs = mysqli_query($conecta,$sql);

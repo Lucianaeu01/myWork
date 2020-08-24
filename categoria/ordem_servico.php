@@ -20,27 +20,19 @@
 
 </style>
 
-<body class="bg-dark text-white">
+<body class="bg-dark">
     <div class="container"><br>
-        <div class="row">
-            <div class="col-12">
-                <form method="post" action="inserir_categoria.php">
-                    <button class="btn btn-light icone">
-                        <input type="image" width="40" height="40" src="../imagens/inserir_categoria.png" data-toggle="tooltip" data-placement="top" title="Inserir nova categoria">
-                    </button>
-                </form>
-            </div>
-        </div><br>
-        <div class="row">
+        <div class="row text-white">
             <?php 
                 $sql = mysqli_query($conecta,"SELECT * FROM tb_categoria");
                 while($row = mysqli_fetch_object($sql)){
             ?>
-            <div class="col-3 border m-2">
-                <a style="font-size:30px" href="categoria_info.php?id="<?php $row->pk_id?>><?php echo $row->categoria;?></a>
+            <div class="col-3 text-center">
+               <img src="../fotos/<?php echo $row->foto ?>" class="img-responsive rounded-circle" width="130"><br>
+                <a style="font-size:30px" href="categoria_info.php?id=" <?php $row->pk_id?>><?php echo $row->categoria;?></a><br>
             </div>
 
-        <?php 
+            <?php 
                 }
             ?>
 

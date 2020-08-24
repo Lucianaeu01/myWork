@@ -49,7 +49,6 @@ if(!empty($_GET["id"])) {
             <h1 class="ls-login-logo">MY WORK</h1>
             <form role="form" method="POST" action="login.php">
                 <fieldset>
-
                 <div class="form-group">
                         <label for="categoria">Categoria:</label>
                         <select class="form-control" id="categoria" name="categoria" onchange='encaminha(this.value);'>
