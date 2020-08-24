@@ -1,6 +1,7 @@
 <?php 
 if($_POST) {
     include('../includes/conexaoMywork.php');
+    include("../includes/autenticacao.php");
     if(empty($_POST["pk_id"])) {
         $sql = "INSERT INTO tb_estado (nome_estado,UF) VALUES ('".$_POST["estado"]."','".$_POST["uf"]."');";
         
@@ -21,5 +22,5 @@ if($_POST) {
 }else{
     $msg = base64_encode("Falha ao tentar inserir o registro! Tente novamente mais tarde.");
 }
-header('Location: lista_estado.php?msg='.$msg);
+header('Location: index.php?msg='.$msg);
 ?>

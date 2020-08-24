@@ -1,6 +1,6 @@
 <?php
     include_once("../includes/conexaoMywork.php");
-    include('../includes/autenticacao.php');
+    include("../includes/autenticacao.php");
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -8,8 +8,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/bootstrap.css">
-    <link rel= "stylesheet" href="../fontawesome-free-5.14.0-web/css/all.css" />
-    <title>Lista de Serviço</title>
+    <title>Lista de Cidade</title>
 </head>
 
 <style>
@@ -23,9 +22,9 @@
     <div class="container"><br>
        <div class="row">
            <div class="col-12">
-               <form method="post" action="inserir_servico.php">
+               <form method="post" action="inserir_cidade.php">
                <button class="btn btn-light icone">
-                   <input type="image" width="40" height="40" src="../imagens/inserir_servico2.png" data-toggle="tooltip" data-placement="top" title="Inserir novo serviço">
+                   <input type="image" width="40" height="40" src="../imagens/inserir_local2.png" data-toggle="tooltip" data-placement="top" title="Inserir nova cidade">
                </button>
                </form>
            </div>
@@ -34,30 +33,25 @@
             <thead class="thead-light">
                 <tr>
                     <th>#</th>
-                    <th>Serviço</th>
-                    <th>Categoria</th>
-                    <th>Habilita</th>
+                    <th>Cidade</th>
+                    <th>Estado</th>
                     <th>Ação</th>
                 </tr>
                 <?php 
-                $sql = mysqli_query($conecta,"SELECT tb_servico.pk_id, servico, categoria, tb_servico.habilita FROM tb_servico LEFT JOIN tb_categoria ON tb_categoria.pk_id = tb_servico.fk_categoria ORDER BY tb_servico.pk_id");
+                $sql = mysqli_query($conecta,"SELECT tb_cidade.pk_id, nome_cidade, UF FROM tb_cidade LEFT JOIN tb_estado ON tb_estado.pk_id = tb_cidade.fk_estado ORDER BY tb_cidade.pk_id");
                 while($row = mysqli_fetch_object($sql)){
             ?>
             </thead>
             <tr class="bg-white">
                 <td><?php echo $row->pk_id;?></td>
-                <td><?php echo $row->servico;?></td>
-                <td><?php echo $row->categoria;?></td>
-                <td><?php if($row->habilita == "a"){
-                    echo '<i class="fas fa-check"></i>';
-                } ?></td>              
-                <td><a href="inserir_servico.php?id=<?php echo base64_encode($row->pk_id)?>">
+                <td><?php echo $row->nome_cidade;?></td>
+                <td><?php echo $row->UF;?></td>
+                <td><a href="inserir_cidade.php?id=<?php echo base64_encode($row->pk_id)?>">
                         <button type="submit" class="btn btn-info">[ alterar ]</button>
                     </a>
                     <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modalExcluir" data-id="<?php echo $row->pk_id;?>">
                         [ excluir ]
                     </button>
-                </td>
             </tr>
             <?php 
                 }
@@ -66,7 +60,7 @@
         <div class="modal fade" id="modalExcluir" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
-                    <form method="post" action="remover_servico.php">
+                    <form method="post" action="remover_cidade.php">
                         <div class="modal-header">
                             <h5 class="modal-title" id="exampleModalLabel">Aviso</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">

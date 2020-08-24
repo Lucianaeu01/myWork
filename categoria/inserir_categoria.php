@@ -47,24 +47,29 @@ if(!empty($_GET["id"])) {
         </div>
         <div class="row">
             <div class="col-12">
-                <form method="post" action="salva_categoria.php">
+                <form method="post" action="salva_categoria.php" enctype="multipart/form-data">
+                    <div class="col-6">
+                        <div class="form-group">
+                            <div class="custom-control custom-switch">
+                                <input type="checkbox" class="custom-control-input" id="habilita" name="habilita" <?php echo $check;?>>
+                                <label class="custom-control-label" for="habilita">Habilita:</label>
+                            </div>
+
+                        </div>
+                    </div>
                     <div class="row center">
                         <div class="col-6">
                             <div class="form-group">
                                 <label for="nome">Categoria:</label>
                                 <input class="form-control" type="text" id="categoria" name="categoria" value="<?php echo $row->categoria?>">
                             </div>
-                        </div>
-                        <div class="col-6">
                             <div class="form-group">
-                                <div class="custom-control custom-switch">                              
-                                <input type="checkbox" class="custom-control-input" id="habilita" name="habilita" <?php echo $check;?>>
-                                <label class="custom-control-label"  for="habilita">Habilita:</label>
-                                </div>
-
+                                <label for="foto">Foto:</label>
+                                <input type="file" id="foto" name="foto">
                             </div>
                         </div>
                     </div>
+                    
                     <div class="form-group">
                         <input type="hidden" name="pk_id" value="<?php echo $_GET["id"]?>">
                         <button type="submit" class="btn btn-primary">Salvar</button>

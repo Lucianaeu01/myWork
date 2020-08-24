@@ -1,6 +1,7 @@
 <?php 
 error_reporting(0);
 include("../includes/conexaoMywork.php");
+include("../includes/autenticacao.php");
 
 if(!empty($_GET["id"])) {
     $sql = "SELECT * FROM tb_estado WHERE pk_id = " . base64_decode($_GET["id"]);
@@ -12,7 +13,7 @@ if(!empty($_GET["id"])) {
         $msg = base64_encode("Registro não encontrado!");
         $tipo = base64_encode("alert-danger");
 
-        header("Location: lista_estado.php?msg=$msg");
+        header("Location: index.php?msg=$msg");
         exit;
     }
 }
@@ -27,6 +28,7 @@ if(!empty($_GET["id"])) {
     <link rel="stylesheet" href="../css/bootstrap.css">
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
     <script src="../js/jquery-3.5.1.min.js"></script>
+    <script src="../css/bootstrap.bundle.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
 </head>
 

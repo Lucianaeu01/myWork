@@ -1,5 +1,6 @@
 <?php
     include_once("../includes/conexaoMywork.php");
+    include("../includes/autenticacao.php");
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -8,12 +9,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/bootstrap.css">
+    <link rel="stylesheet" href="../fontawesome-free-5.14.0-web/css/all.css">
     <title>Lista de Clientes</title>
 </head>
 <style>
     .icone:hover {
         background-color: skyblue;
     }
+
 </style>
 
 <body class="bg-dark">
@@ -38,11 +41,12 @@
                     <th>Telefone</th>
                     <th>Celular</th>
                     <th>Cidade</th>
+                    <th>Habilita</th>
                     <th>Ação</th>
                 </tr>
                 <?php 
                 
-                $sql = mysqli_query($conecta,"SELECT tb_cliente.pk_id, nome, DATE_FORMAT(data_nascimento,'%d/%m/%Y') AS data_nascimento, cpf, email, telefone, celular, nome_cidade FROM tb_cliente LEFT JOIN tb_cidade ON tb_cidade.pk_id = tb_cliente.fk_cidade ORDER BY tb_cliente.nome");
+                $sql = mysqli_query($conecta,"SELECT tb_cliente.pk_id, nome, DATE_FORMAT(data_nascimento,'%d/%m/%Y') AS data_nascimento, cpf, email, telefone, celular, habilita, nome_cidade, habilita FROM tb_cliente LEFT JOIN tb_cidade ON tb_cidade.pk_id = tb_cliente.fk_cidade ORDER BY tb_cliente.nome");
                 while($row = mysqli_fetch_object($sql)){
             ?>
             </thead>
@@ -50,11 +54,16 @@
                 <td><?php echo $row->pk_id;?></td>
                 <td><?php echo $row->nome;?></td>
                 <td><?php echo $row->data_nascimento;?></td>
-                <td><?php echo $row->cpf;?></td>
                 <td><?php echo $row->email;?></td>
+                <td><?php echo $row->cpf;?></td>
                 <td><?php echo $row->telefone;?></td>
                 <td><?php echo $row->celular;?></td>
                 <td><?php echo $row->nome_cidade;?></td>
+                <td><?php 
+                    if($row->habilita == 'a') {
+                        echo '<i class="fas fa-check"></i>';
+                    }
+                    ?></td>
                 <td>
                     <a href="inserir_cliente.php?id=<?php echo base64_encode($row->pk_id)?>">
                         <button type="submit" class="btn btn-info">[ alterar ]</button>
@@ -88,7 +97,6 @@
                 </div>
             </div>
         </div>
-
         <div class="modal fade" id="modalMensagem" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">

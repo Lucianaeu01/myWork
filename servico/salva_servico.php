@@ -1,7 +1,7 @@
 <?php 
 if($_POST) {
     include('../includes/conexaoMywork.php');
-    //include('../includes/autenticacao.php');
+    include('../includes/autenticacao.php');
     if(!empty($_POST['habilita'])){
         $habilita = "a";
     }else{
@@ -30,5 +30,6 @@ if($_POST) {
 }else {
     $msg = base64_encode("Falha ao tentar inserir o registro! Tente novamente mais tarde.");
 }
+
 header('Location: index_servico.php?msg='.$msg);
 ?>
