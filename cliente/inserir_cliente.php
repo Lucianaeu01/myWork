@@ -1,7 +1,7 @@
 <?php 
 error_reporting(0);
 include("../includes/conexaoMywork.php");
-include("../includes/autenticacao.php");
+//include("../includes/autenticacao.php");
 
 if(!empty($_GET["id"])) {
     $sql = "SELECT * FROM tb_cliente WHERE pk_id = " . base64_decode($_GET["id"]);
@@ -133,7 +133,10 @@ if(!empty($_GET["id"])) {
                         <input type="hidden" name="pk_id" value="<?php echo $_GET["id"]?>">
                         <button type="submit" class="btn btn-primary">Salvar</button>
                         <button type="reset" class="btn btn-outline-danger">Limpar</button>
-                        <input type="button" src="index.php" class="btn btn-outline-secondary" value="Voltar">
+                        <a href="index.php">
+                            <button type="button" class="btn btn-info">Voltar</button>
+                        </a>
+                        
                     </div>
                 </form>
             </div>

@@ -9,7 +9,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/bootstrap.css">
-    <link rel= "stylesheet" href="../fontawesome-free-5.14.0-web/css/all.css" />
+    <link rel="stylesheet" href="../fontawesome-free-5.14.0-web/css/all.css" />
     <title>Lista de Categoria</title>
 </head>
 
@@ -20,51 +20,31 @@
 
 </style>
 
-<body class="bg-dark">
+<body class="bg-dark text-white">
     <div class="container"><br>
         <div class="row">
             <div class="col-12">
                 <form method="post" action="inserir_categoria.php">
                     <button class="btn btn-light icone">
-                        <input type="image" width="40" height="40" src="../imagens/inserir_categoria.png" data-toggle="tooltip" data-placement="top" title="Inserir nova categoria">                        
+                        <input type="image" width="40" height="40" src="../imagens/inserir_categoria.png" data-toggle="tooltip" data-placement="top" title="Inserir nova categoria">
                     </button>
                 </form>
-
             </div>
         </div><br>
-        <table class="table">
-            <thead class="thead-light">
-                <tr>
-                    <th>#</th>
-                    <th>Categoria</th>
-                    <th>Habilita</th>
-                    <th>Ação</th>
-                </tr>
-                <?php 
+        <div class="row">
+            <?php 
                 $sql = mysqli_query($conecta,"SELECT * FROM tb_categoria");
                 while($row = mysqli_fetch_object($sql)){
             ?>
-            </thead>
-            <tr class="bg-white">
-                <td><?php echo $row->pk_id;?></td>
-                <td><?php echo $row->categoria;?></td>
-                <td><?php if($row->habilita == "a"){
-                    echo '<i class="fas fa-check"></i>';
-                } ?></td>              
-           
+            <div class="col-3 border m-2">
+                <a style="font-size:30px" href="categoria_info.php?id="<?php $row->pk_id?>><?php echo $row->categoria;?></a>
+            </div>
 
-                <td><a href="inserir_categoria.php?id=<?php echo base64_encode($row->pk_id) ?>">
-                        <button type="submit" class="btn btn-info">[ alterar ]</button>
-                    </a>
-                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modalExcluir" data-id="<?php echo $row->pk_id;?>">
-                        [ excluir ]
-                    </button>
-            </tr>
-            <?php 
+        <?php 
                 }
             ?>
-        </table>
-    
+
+        </div>
         <div class="modal fade" id="modalExcluir" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">

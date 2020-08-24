@@ -1,7 +1,7 @@
 <?php 
 error_reporting(0);
 include("../includes/conexaoMywork.php");
-include('../includes/autenticacao.php');
+//include('../includes/autenticacao.php');
 
 if(!empty($_GET["id"])) {
     $sql = "SELECT * FROM tb_categoria WHERE pk_id = " . base64_decode($_GET["id"]);
@@ -47,7 +47,7 @@ if(!empty($_GET["id"])) {
         </div>
         <div class="row">
             <div class="col-12">
-                <form method="post" action="salva_categoria.php">
+                <form method="post" action="salva_categoria.php" enctype="multipart/form-data">
                     <div class="col-6">
                         <div class="form-group">
                             <div class="custom-control custom-switch">
@@ -63,8 +63,13 @@ if(!empty($_GET["id"])) {
                                 <label for="nome">Categoria:</label>
                                 <input class="form-control" type="text" id="categoria" name="categoria" value="<?php echo $row->categoria?>">
                             </div>
+                            <div class="form-group">
+                                <label for="foto">Foto:</label>
+                                <input type="file" id="foto" name="foto">
+                            </div>
                         </div>
                     </div>
+                    
                     <div class="form-group">
                         <input type="hidden" name="pk_id" value="<?php echo $_GET["id"]?>">
                         <button type="submit" class="btn btn-primary">Salvar</button>
