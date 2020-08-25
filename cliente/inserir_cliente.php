@@ -114,23 +114,38 @@ if(!empty($_GET["id"])) {
                                 <select class="form-control" id="cidade" name="cidade">
                                     <option value=""> -- Selecione -- </option>
                                     <?php
-                            $rs1 = mysqli_query($conecta,"SELECT * FROM tb_cidade ORDER BY nome_cidade");
-                            while($row1 = mysqli_fetch_object($rs1)) {
-                                if($row->fk_cidade == $row1->pk_id) {
-                                    $selected = "selected";
-                                } else {
-                                    $selected = "";
-                                }
-                                echo "<option $selected value='$row1->pk_id'> $row1->nome_cidade </option>
-                                ";
-                            }
-                            ?>
+                                    $rs1 = mysqli_query($conecta,"SELECT * FROM tb_cidade ORDER BY nome_cidade");
+                                    while($row1 = mysqli_fetch_object($rs1)) {
+                                        if($row->fk_cidade == $row1->pk_id) {
+                                            $selected = "selected";
+                                        } else {
+                                            $selected = "";
+                                        }
+                                        echo "<option $selected value='$row1->pk_id'> $row1->nome_cidade </option>
+                                        ";
+                                    }
+                                    ?>
                                 </select>
                             </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="form-group">
+                                <label for="foto">Foto:</label><br>
+                                <input type="file" id="foto" name="foto">
+                            </div>
+                        </div>
+                        <?php 
+                            if(!empty($row->foto)) { ?>
+                        <div class="col-2">
+                            <div class="form-group">
+                                <img src="../fotos/<?php echo $row->foto;?>" width="150">
+                            </div>
+                            <?php } ?>
                         </div>
                     </div>
                     <div class="form-group">
                         <input type="hidden" name="pk_id" value="<?php echo $_GET["id"]?>">
+                        <input type="hidden" name="nome_foto" value="<?php echo $row->foto?>">
                         <button type="submit" class="btn btn-primary">Salvar</button>
                         <button type="reset" class="btn btn-danger">Limpar</button>
                         <a href="index.php">

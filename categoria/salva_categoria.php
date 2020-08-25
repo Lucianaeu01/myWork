@@ -1,13 +1,25 @@
 <?php 
 if($_POST) {
     include('../includes/conexaoMywork.php');
+    if($_FILES["foto"]["error"]<>4) {
+        $tipo = $_FILES["foto"]["type"];
+        $extensao = explode(".",$_FILES["foto"]["name"]);
+        $extensao = end($extensao);
+        $nome_foto = sha1($_FILES["foto"]["tmp_name"] . time() . uniqid()) . "." . $extensao;
+        
+        move_uploaded_file($_FILES["foto"]["tmp_name"],"../fotos/".$nome_foto);
+        
+    }else {
+        $nome_foto = $_POST["nome_foto"];
+    }
+    
     if(!empty($_POST['habilita'])){
         $habilita = "a";
     }else{
         $habilita = "i";
     }
     if(empty($_POST["pk_id"])) {
-        $sql = "INSERT INTO tb_categoria (categoria,habilita) VALUES ('".$_POST["categoria"]."','".$habilita."');";
+        $sql = "INSERT INTO tb_categoria (categoria,habilita,foto) VALUES ('".$_POST["categoria"]."','".$habilita."','$nome_foto');";
         
         mysqli_query($conecta,$sql);
     
@@ -16,7 +28,8 @@ if($_POST) {
     }else {
     $sql = "UPDATE tb_categoria SET 
         categoria = '".$_POST["categoria"]."',
-        habilita = '".$habilita."'
+        habilita = '".$habilita."',
+        foto = '".$nome_foto."'
         WHERE pk_id = " . base64_decode($_POST["pk_id"]);
         
 
