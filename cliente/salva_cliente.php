@@ -59,7 +59,7 @@ if($senha<>""){
     header('Location: inserir_cliente.php?msg='.$msg);
     exit;
 }
-}elseif ($senha== "" && $senhaConfirma=="") {
+}elseif ($senha=="" && $senhaConfirma=="") {
             $sql = "UPDATE tb_cliente SET 
             nome = '".$_POST["nome"]."',
             data_nascimento = '".$_POST["data_nascimento"]."',

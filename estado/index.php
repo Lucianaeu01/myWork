@@ -28,7 +28,6 @@
                         <input type="image" width="40" height="40" src="../imagens/inserir_local2.png" data-toggle="tooltip" data-placement="top" title="Inserir novo estado">
                     </button>
                 </form>
-
             </div>
         </div><br>
         <table class="table">

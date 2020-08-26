@@ -24,7 +24,7 @@
     <div class="container"><br>
         <div class="row text-white">
             <?php 
-                $sql = mysqli_query($conecta,"SELECT * FROM tb_categoria");
+                $sql = mysqli_query($conecta,"SELECT * FROM tb_categoria WHERE habilita = 'a'");
                 while($row = mysqli_fetch_object($sql)){
             ?>
             <div class="col-3 text-center">

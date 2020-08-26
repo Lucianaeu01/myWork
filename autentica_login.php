@@ -12,6 +12,10 @@
         $rs = mysqli_query($conecta,$sql);
         
         if(mysqli_num_rows($rs) > 0){
+            $sql = "SELECT * FROM $categoria WHERE habilita = 'a' AND email = '$login' AND senha = '".sha1(md5($senha))."'";
+        
+            $rs1 = mysqli_query($conecta,$sql);
+            if(mysqli_num_rows($rs1) > 0){
             $row = mysqli_fetch_object($rs);
             $token = md5(date("YmdHis").$row->email);
             $_SESSION['categoria'] = $_POST["userCategoria"];
@@ -20,7 +24,10 @@
             setcookie('token',$token, time() + (86400 * 30), "/");
             $msg = base64_encode("Login efetuado com sucesso");
             header("location: index.php?msg=$msg");
-            exit;     
+            exit; 
+            }else {
+                $msg = base64_encode("Usuário em análise");
+            }      
         }else{
         $_SESSION = array();
         session_destroy();
