@@ -27,7 +27,7 @@
                 $sql = mysqli_query($conecta,"SELECT * FROM tb_categoria WHERE habilita = 'a'");
                 while($row = mysqli_fetch_object($sql)){
             ?>
-            <div class="col-3 text-center">
+            <div class="col-3 text-center mb-5">
                <img src="../fotos/<?php echo $row->foto ?>" class="img-responsive rounded-circle" width="130"><br>
                 <a style="font-size:30px" href="categoria_info.php?id=" <?php $row->pk_id?>><?php echo $row->categoria;?></a><br>
             </div>
