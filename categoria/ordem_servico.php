@@ -4,7 +4,6 @@
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -22,14 +21,14 @@
 
 <body class="bg-dark">
     <div class="container"><br>
-        <div class="row text-white">
+        <div class="row text-white md-5">
             <?php 
                 $sql = mysqli_query($conecta,"SELECT * FROM tb_categoria WHERE habilita = 'a'");
                 while($row = mysqli_fetch_object($sql)){
             ?>
             <div class="col-3 text-center">
                <img src="../fotos/<?php echo $row->foto ?>" class="img-responsive rounded-circle" width="130"><br>
-                <a style="font-size:30px" href="categoria_info.php?id=" <?php $row->pk_id?>><?php echo $row->categoria;?></a><br>
+                <a style="font-size:30px" href="categoria_info.php?id=<?php echo base64_encode($row->pk_id)?>"><?php echo $row->categoria;?></a><br>
             </div>
 
             <?php 
