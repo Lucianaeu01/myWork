@@ -12,13 +12,6 @@
     <title>Lista de Categoria</title>
 </head>
 
-<style>
-    .icone:hover {
-        background-color: skyblue;
-    }
-
-</style>
-
 <body class="bg-dark">
     <div class="container"><br>
         <div class="row text-white md-5">
