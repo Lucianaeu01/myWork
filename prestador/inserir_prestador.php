@@ -9,6 +9,11 @@ if(!empty($_GET["id"])) {
 
     if(mysqli_num_rows($rs)>0) {
         $row = mysqli_fetch_object($rs);
+        $sql = "SELECT fk_servico FROM rl_prestador_servico WHERE fk_prestador = " . base64_decode($_GET["id"]);
+        $rs2 = mysqli_query($conecta,$sql);
+        while($rowServico = mysqli_fetch_object($rs2)) {
+            $servicos[] = $rowServico->fk_servico;
+        }
     } else {
         $msg = base64_encode("Registro não encontrado!");
         $tipo = base64_encode("alert-danger");
@@ -124,7 +129,7 @@ if(!empty($_GET["id"])) {
                         <div class="col-4">
                             <div class="form-group">
                                 <label for="foto">Foto:</label>
-                                <input type="file" id="foto" name="foto" required><br>
+                                <input type="file" id="foto" name="foto"><br>
                             </div>
                         </div>
                         <?php 
@@ -139,13 +144,13 @@ if(!empty($_GET["id"])) {
                     <div class="row">
                         <div class="col-12">
                             <div class="form-group">
-                                <label for="servicos">Serviços</label>
-                                <select class="form-control select2" name="servicos" id="servicos" multiple>
+                                <label for="servico">Serviços</label>
+                                <select class="form-control select2" name="servico[]" id="servico" multiple>
                                     <option value=""> -- Selecione -- </option>
                                     <?php
                                     $rs1 = mysqli_query($conecta,"SELECT * FROM tb_servico ORDER BY servico");
                                     while($row1 = mysqli_fetch_object($rs1)) {
-                                        if($row->fk_servico == $row1->pk_id) {
+                                        if(in_array($row1->pk_id,$servicos)) {
                                             $selected = "selected";
                                         } else {
                                             $selected = "";
@@ -163,7 +168,7 @@ if(!empty($_GET["id"])) {
                             <div class="form-group">
                                 <input type="hidden" name="pk_id" value="<?php echo $_GET["id"]?>">
                                 <input type="hidden" name="nome_foto" value="<?php echo $row->foto?>">
-                                <button type="submit" class="btn btn-primary">Próximo</button>
+                                <button type="submit" class="btn btn-primary">Salvar</button>
                                 <button type="reset" class="btn btn-danger">Limpar</button>
                                 <a href="index.php">
                                     <button type="button" class="btn btn-warning">Voltar</button>

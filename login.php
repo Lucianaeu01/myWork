@@ -49,6 +49,7 @@
                                 <option value=""> -- Selecione -- </option>
                                 <option value="cliente"> Cliente </option>
                                 <option value="prestador"> Prestador de Serviço </option>
+                                <option value="administrador"> Administrador </option>
                             </select>
                         </div>
                         <a href="#" class="ls-login-forgot">Esqueci minha senha</a>

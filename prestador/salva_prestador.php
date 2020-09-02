@@ -43,9 +43,9 @@ if($_POST) {
 
     $sql = "INSERT INTO tb_prestador (nome,data_nascimento,cpf,email,senha,telefone,celular,fk_cidade,habilita,foto) VALUES    ('".$_POST["nome"]."','".$_POST["data_nascimento"]."','".$_POST["cpf"]."','".$_POST["email"]."','$senha','".$_POST["telefone"]."','".$_POST["celular"]."',".$_POST["cidade"].",'".$habilita."','$nome_foto');"; 
 
-    mysqli_query($conecta,$sql);
+    $rs = mysqli_query($conecta,$sql);
+    $id_prestador = mysqli_insert_id($conecta);
         
-        $id_prestador = base64_encode(mysqli_insert_id($conecta));
 
     $msg = base64_encode("Registro inserido com sucesso!");
     } else {
@@ -64,13 +64,24 @@ if($_POST) {
 
         $rs = mysqli_query($conecta,$sql);
         
-        $id_prestador = $_POST["pk_id"];
+        $id_prestador = base64_decode($_POST["pk_id"]);
 
         $msg = base64_encode("Registro atualizado com sucesso!");
-        }  
+        }
     
-    header('Location: escolha.php?id_pretador='.$id_prestador);
-    exit;
+    if($rs) {
+        mysqli_query($conecta,"DELETE FROM rl_prestador_servico WHERE fk_prestador = " . $id_prestador);
+                $insertServico = "";
+                $total = count($_POST["servico"]);
+                for($i=0;$i<$total;$i++) {
+                    $insertServico.= "($id_prestador," . $_POST["servico"][$i] . "),";
+                }
+
+                $servico = "INSERT INTO rl_prestador_servico (fk_prestador,fk_servico) VALUES ";
+                $servico.= $insertServico; 
+                $rs = mysqli_query($conecta,substr($servico,0,-1));
+        }
+    
 }else{
     $msg = base64_encode("Falha ao tentar inserir o registro! Tente novamente mais tarde.");
 }
