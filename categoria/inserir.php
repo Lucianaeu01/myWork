@@ -47,7 +47,7 @@ if(!empty($_GET["id"])) {
         </div>
         <div class="row">
             <div class="col-12">
-                <form method="post" action="salva_categoria.php" enctype="multipart/form-data">
+                <form method="post" action="salvar.php" enctype="multipart/form-data">
                     <div class="col-6">
                         <div class="form-group">
                             <div class="custom-control custom-switch">

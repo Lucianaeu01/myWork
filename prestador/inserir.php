@@ -44,7 +44,7 @@ if(!empty($_GET["id"])) {
         </div><br>
         <div class="row">
             <div class="col-12">
-                <form method="post" action="salva_prestador.php" enctype="multipart/form-data">
+                <form method="post" action="salvar.php" enctype="multipart/form-data">
                     <div class="custom-control custom-switch">
                         <input type="checkbox" class="custom-control-input" id="habilita" name="habilita" <?php echo $check ?>>
                         <label class="custom-control-label" for="habilita">Habilita</label>

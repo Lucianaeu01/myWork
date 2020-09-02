@@ -17,7 +17,7 @@ if($_FILES["foto"]["error"]<>4) {
 if(!empty($senha)) {
         if($senha != $senhaConfirma) {
             $msg = base64_encode('As senhas digitadas não conferem! Por favor, digite novamente.');
-            header('Location: index.php?msg='.$msg);
+            header('Location: inserir.php?msg='.$msg. '&id='.$_POST["pk_id"]);
             exit;
         } else {
             $senha = sha1(md5($_POST["senha"]));
@@ -64,9 +64,7 @@ if(!empty($senha)) {
             $msg = base64_encode("Falha ao tentar inserir o registro! Tente novamente mais tarde.");
         }
     }else {
-    $msg = base64_encode("As senhas não são iguais!");
-    header('Location: inserir_cliente.php?msg='.$msg);
-    exit;
+    
 }
 
 header('Location: index.php?msg='.$msg);

@@ -13,5 +13,5 @@ if(!empty($_POST["pk_id"])) {
     }
 }
 
-header('Location: index_servico.php?msg='.$msg);
+header('Location: index.php?msg='.$msg);
 ?>

@@ -21,7 +21,7 @@ if(!empty($_GET["id"])) {
         $msg = base64_encode("Registro não encontrado!");
         $tipo = base64_encode("alert-danger");
 
-        header("Location: index_servico.php?msg=$msg");
+        header("Location: index.php?msg=$msg");
         exit;
     }
 }
@@ -48,7 +48,7 @@ if(!empty($_GET["id"])) {
         </div>
         <div class="row">
             <div class="col-12">
-                <form method="post" action="salva_servico.php">
+                <form method="post" action="salvar.php">
                     <div class="col-6">
                         <div class="form-group">
                             <div class="custom-control custom-switch">

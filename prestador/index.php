@@ -22,7 +22,7 @@
     <div class="container"><br>
         <div class="row">
             <div class="col-12">
-                <form method="post" action="inserir_prestador.php">
+                <form method="post" action="inserir.php">
                     <button class="btn btn-light icone">
                         <input type="image" width="40" height="40" src="../imagens/inserir_cliente.png" data-toggle="tooltip" data-placement="top" title="Inserir novo cliente">
                     </button>
@@ -64,7 +64,7 @@
                     }
                     ?></td>
                 <td>
-                    <a href="inserir_prestador.php?id=<?php echo base64_encode($row->pk_id)?>">
+                    <a href="inserir.php?id=<?php echo base64_encode($row->pk_id)?>">
                         <button type="submit" class="btn btn-info">[ alterar ]</button>
                     </a>
                     <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modalExcluir" data-id="<?php echo $row->pk_id;?>">[ excluir ]</button>
@@ -77,7 +77,7 @@
         <div class="modal fade" id="modalExcluir" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
-                    <form method="post" action="remover_prestador.php">
+                    <form method="post" action="remover.php">
                         <div class="modal-header">
                             <h5 class="modal-title" id="exampleModalLabel">Aviso</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">

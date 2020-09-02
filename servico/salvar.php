@@ -31,5 +31,5 @@ if($_POST) {
     $msg = base64_encode("Falha ao tentar inserir o registro! Tente novamente mais tarde.");
 }
 
-header('Location: index_servico.php?msg='.$msg);
+header('Location: index.php?msg='.$msg);
 ?>

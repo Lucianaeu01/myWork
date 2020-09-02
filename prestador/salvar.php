@@ -27,7 +27,7 @@ if($_POST) {
     if(!empty($senha)) {
         if($senha != $senhaConfirma) {
             $msg = base64_encode('As senhas digitadas não conferem! Por favor, digite novamente.');
-            header('Location: index.php?msg='.$msg);
+            header('Location: inserir.php?msg='.$msg. '&id='.$_POST["pk_id"]);
             exit;
         } else {
             $senha = sha1(md5($_POST["senha"]));
@@ -71,16 +71,16 @@ if($_POST) {
     
     if($rs) {
         mysqli_query($conecta,"DELETE FROM rl_prestador_servico WHERE fk_prestador = " . $id_prestador);
-                $insertServico = "";
-                $total = count($_POST["servico"]);
-                for($i=0;$i<$total;$i++) {
-                    $insertServico.= "($id_prestador," . $_POST["servico"][$i] . "),";
-                }
-
-                $servico = "INSERT INTO rl_prestador_servico (fk_prestador,fk_servico) VALUES ";
-                $servico.= $insertServico; 
-                $rs = mysqli_query($conecta,substr($servico,0,-1));
+        $insertServico = "";
+        $total = count($_POST["servico"]);
+        for($i=0;$i<$total;$i++) {
+            $insertServico.= "($id_prestador," . $_POST["servico"][$i] . "),";
         }
+
+        $servico = "INSERT INTO rl_prestador_servico (fk_prestador,fk_servico) VALUES ";
+        $servico.= $insertServico; 
+        $rs = mysqli_query($conecta,substr($servico,0,-1));
+    }
     
 }else{
     $msg = base64_encode("Falha ao tentar inserir o registro! Tente novamente mais tarde.");
