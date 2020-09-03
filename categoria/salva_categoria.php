@@ -1,6 +1,7 @@
 <?php 
 if($_POST) {
     include('../includes/conexaoMywork.php');
+    include('../includes/autenticacao.php');
     if($_FILES["foto"]["error"]<>4) {
         $tipo = $_FILES["foto"]["type"];
         $extensao = explode(".",$_FILES["foto"]["name"]);
