@@ -14,8 +14,18 @@ if($_FILES["foto"]["error"]<>4) {
     }else {
         $nome_foto = $_POST["nome_foto"];
     }
-if($senha<>""){
-    if ($senha==$senhaConfirma) {
+if(!empty($senha)) {
+        if($senha != $senhaConfirma) {
+            $msg = base64_encode('As senhas digitadas não conferem! Por favor, digite novamente.');
+            header('Location: inserir.php?msg='.$msg. '&id='.$_POST["pk_id"]);
+            exit;
+        } else {
+            $senha = sha1(md5($_POST["senha"]));
+            $sqlSenha = "senha = '$senha',";
+        }
+    } else {
+        $sqlSenha = "";
+    }
         
         if($_POST) {
             if(!empty($_POST['habilita'])){
@@ -24,9 +34,8 @@ if($senha<>""){
                 $habilita = "i";
             }
             
-            $senha = sha1(md5($_POST["senha"]));    
-            
             if(empty($_POST["pk_id"])) {
+            $senha = sha1(md5($_POST["senha"]));    
                 
                 $sql = "INSERT INTO tb_cliente (nome,data_nascimento,cpf,email,senha,telefone,celular,fk_cidade,habilita,foto) VALUES   ('".$_POST["nome"]."','".$_POST["data_nascimento"]."','".$_POST["cpf"]."','".$_POST["email"]."','$senha','".$_POST["telefone"]."','".$_POST["celular"]."',".$_POST["cidade"].",'".$habilita."','".$nome_foto."');";
                 
@@ -39,7 +48,7 @@ if($senha<>""){
                 data_nascimento = '".$_POST["data_nascimento"]."',
                 cpf = '".$_POST["cpf"]."',
                 email = '".$_POST["email"]."',
-                senha = '$senha',
+                $sqlSenha
                 telefone = '".$_POST["telefone"]."',
                 celular = '".$_POST["celular"]."',
                 fk_cidade = ".$_POST["cidade"].",
@@ -55,28 +64,8 @@ if($senha<>""){
             $msg = base64_encode("Falha ao tentar inserir o registro! Tente novamente mais tarde.");
         }
     }else {
-    $msg = base64_encode("As senhas não são iguais!");
-    header('Location: inserir_cliente.php?msg='.$msg);
-    exit;
-}
-}elseif ($senha=="" && $senhaConfirma=="") {
-            $sql = "UPDATE tb_cliente SET 
-            nome = '".$_POST["nome"]."',
-            data_nascimento = '".$_POST["data_nascimento"]."',
-            cpf = '".$_POST["cpf"]."',
-            email = '".$_POST["email"]."',
-            telefone = '".$_POST["telefone"]."',
-            celular = '".$_POST["celular"]."',
-            fk_cidade = ".$_POST["cidade"].",
-            habilita = '".$habilita."',
-            foto = '".$nome_foto."'
-            WHERE pk_id = " . base64_decode($_POST["pk_id"]); 
     
-            $rs = mysqli_query($conecta,$sql);
-    
-            $msg = base64_encode("Registro atualizado com sucesso!");
 }
-
 
 header('Location: index.php?msg='.$msg);
 ?>

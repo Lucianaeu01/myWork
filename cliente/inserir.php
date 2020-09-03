@@ -1,7 +1,7 @@
 <?php 
 error_reporting(0);
 include("../includes/conexaoMywork.php");
-//include("../includes/autenticacao.php");
+include("../includes/autenticacao.php");
 
 if(!empty($_GET["id"])) {
     $sql = "SELECT * FROM tb_cliente WHERE pk_id = " . base64_decode($_GET["id"]);
@@ -46,7 +46,7 @@ if(!empty($_GET["id"])) {
         </div><br>
         <div class="row">
             <div class="col-12">
-                <form method="post" action="salva_cliente.php" enctype="multipart/form-data">
+                <form method="post" action="salvar.php" enctype="multipart/form-data">
                     <div class="custom-control custom-switch">
                         <input type="checkbox" class="custom-control-input" id="habilita" name="habilita" <?php echo $check ?>>
                         <label class="custom-control-label" for="habilita">Habilita</label>
