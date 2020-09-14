@@ -52,7 +52,7 @@
                                 <option value="administrador"> Administrador </option>
                             </select>
                         </div>
-                        <a href="#" class="ls-login-forgot">Esqueci minha senha</a>
+                        <a href="redefinir_senha/confirma_dado.php" class="ls-login-forgot">Esqueci minha senha</a>
                         <br><br><br>
                         <input type="submit" name="" value="Entrar" class="btn btn-primary btn-lg btn-block">
                         <br><br>
