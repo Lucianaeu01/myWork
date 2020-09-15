@@ -1,6 +1,6 @@
 <?php 
     include('../includes/conexaoMywork.php');
-    include("../includes/autenticacao.php");
+    include("../includes/autenticacao_adm.php");
 if(!empty($_POST["pk_id"])) {
     $rs = "DELETE FROM tb_cliente WHERE pk_id = ". $_POST["pk_id"];
     

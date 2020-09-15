@@ -48,11 +48,7 @@ if(!empty($_GET["id"])) {
         </div>
         <div class="row">
             <div class="col-12">
-<<<<<<< HEAD:servico/inserir_servico.php
-                <form method="post" action="salva_servico.php" enctype="multipart/form-data">
-=======
                 <form method="post" action="salvar.php">
->>>>>>> c42e477ef0071b1eeede06d5a868ebcb74fbbe1b:servico/inserir.php
                     <div class="col-6">
                         <div class="form-group">
                             <div class="custom-control custom-switch">

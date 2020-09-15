@@ -1,6 +1,6 @@
 <?php 
 include('../includes/conexaoMywork.php');
-include("../includes/autenticacao.php");
+include("../includes/autenticacao_adm.php");
 $senha = $_POST["senha"];
 $senhaConfirma  = $_POST["senha_confirma"];
 if($_FILES["foto"]["error"]<>4) {

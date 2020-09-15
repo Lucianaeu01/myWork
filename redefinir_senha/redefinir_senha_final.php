@@ -1,35 +1,39 @@
 <?php
  include_once("../includes/conexaoMywork.php");
- $sql1="SELECT * FROM tb_cliente WHERE codigo ='" .$_POST["codigo"]."'";
- $sql2="SELECT * FROM tb_prestador WHERE codigo ='" .$_POST["codigo"]."'";
- $sql3="SELECT * FROM tb_administrador WHERE codigo ='" .$_POST["codigo"]."'";
-$tabela="";
-$id=0;
-$rs1=mysqli_query($conecta,$sql1);
- if(mysqli_num_rows($rs1)!= 0){
-    $tabela= "cliente";
-    $row=mysqli_fetch_object($rs1);
-    $id=$row->pk_id;
+ if($_GET){
+     $tabela = base64_decode($_GET["tb"]);
+     $id = base64_decode($_GET["id"]);
+ }else{
+     $sql1="SELECT * FROM tb_cliente WHERE codigo ='" .$_POST["codigo"]."'";
+     $sql2="SELECT * FROM tb_prestador WHERE codigo ='" .$_POST["codigo"]."'";
+     $sql3="SELECT * FROM tb_administrador WHERE codigo ='" .$_POST["codigo"]."'";
+    $tabela="";
+    $id=0;
+    $rs1=mysqli_query($conecta,$sql1);
+     if(mysqli_num_rows($rs1)!= 0){
+        $tabela= "cliente";
+        $row=mysqli_fetch_object($rs1);
+        $id=$row->pk_id;
+     }
+     $rs2=mysqli_query($conecta,$sql2);
+     if(mysqli_num_rows($rs2)!= 0){
+        $tabela= "prestador";
+        $row=mysqli_fetch_object($rs2);
+        $id=$row->pk_id;
+     }
+     $rs3=mysqli_query($conecta,$sql3);
+     if(mysqli_num_rows($rs3)!= 0){
+        $tabela= "administrador";
+        $row=mysqli_fetch_object($rs3);
+        $id=$row->pk_id;
+     }
  }
- $rs2=mysqli_query($conecta,$sql2);
- if(mysqli_num_rows($rs2)!= 0){
-    $tabela= "prestador";
-    $row=mysqli_fetch_object($rs2);
-    $id=$row->pk_id;
- }
- $rs3=mysqli_query($conecta,$sql3);
- if(mysqli_num_rows($rs3)!= 0){
-    $tabela= "administrador";
-    $row=mysqli_fetch_object($rs3);
-    $id=$row->pk_id;
- }
-//echo $tabela;
-//echo $id; 
-//exit;
+//$tabela;
+//$id; 
+
  if(empty($tabela)||$id==0){
- 
     echo $msg=base64_encode("Código não confere!"); 
-    header("LOCATION:../login.php?msg=$msg");
+    header("LOCATION:redefinir_senha_codigo.php?msg=$msg");
     exit;
  }
 ?>
@@ -90,7 +94,24 @@ $rs1=mysqli_query($conecta,$sql1);
             </div>
         </div>
     </div>
-   
+     <div class="modal fade" id="modalMensagem" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Aviso</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <?php echo base64_decode($_GET["msg"]);?>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-info" data-dismiss="modal">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>      
                
     <script src="../js/jquery-3.5.1.min.js"></script>
     <script src="../css/bootstrap.bundle.js"></script>

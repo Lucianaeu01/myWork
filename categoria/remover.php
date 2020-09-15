@@ -1,7 +1,7 @@
 <?php 
 if(!empty($_POST["pk_id"])) {
     include('../includes/conexaoMywork.php');
-    include('../includes/autenticacao.php');
+    include('../includes/autenticacao_adm.php');
     $rs0= mysqli_query($conecta,"SELECT foto FROM tb_categoria WHERE pk_id = ".$_POST["pk_id"]);
     $row= mysqli_fetch_object($rs0);
     unlink("../fotos/".$row->foto);  

@@ -1,9 +1,10 @@
 <?php
     include_once("../includes/conexaoMywork.php");
-    include("../includes/autenticacao.php");
+    include("../includes/autenticacao_adm.php");
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,15 +21,20 @@
 
 <body class="bg-dark">
     <div class="container"><br>
-       <div class="row">
-           <div class="col-12">
-               <form method="post" action="inserir.php">
-               <button class="btn btn-light icone">
-                   <input type="image" width="40" height="40" src="../imagens/inserir_local2.png" data-toggle="tooltip" data-placement="top" title="Inserir nova cidade">
-               </button>
-               </form>
-           </div>
-       </div><br>
+        <div class="row">
+            <div class="col-10">
+                <form method="post" action="inserir.php">
+                    <button class="btn btn-light icone">
+                        <input type="image" width="40" height="40" src="../imagens/inserir_local2.png" data-toggle="tooltip" data-placement="top" title="Inserir nova cidade">
+                    </button>
+                </form>
+            </div>
+            <div class="col-2">
+                <a href="../administrador/index.php">
+                    <button type="submit" class="btn btn-primary">Voltar</button>
+                </a>
+            </div>
+        </div><br>
         <table class="table">
             <thead class="thead-light">
                 <tr>
@@ -79,7 +85,7 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="modal fade" id="modalMensagem" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -117,7 +123,6 @@
             $('#modalMensagem').modal('show');
             <?php } ?>
         })
-        
 
     </script>
 

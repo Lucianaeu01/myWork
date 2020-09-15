@@ -10,13 +10,17 @@ if($_POST) {
     if(!empty($senha)) {
         if($senha != $senhaConfirma) {
             $msg = base64_encode('As senhas digitadas não conferem! Por favor, digite novamente.');
-            header('Location: redefinir_senha_final.php?msg='.$msg. '&id='.$_POST["pk_id"]);
+            header('Location: redefinir_senha_final.php?msg='.base64_encode($msg). '&id='.base64_encode($_POST["id"]).'&tb='.base64_encode($_POST["tabela"]));
             exit;
         } else {
             $senha = sha1(md5($_POST["novaSenha"]));           
             $sql1="UPDATE tb_".$_POST["tabela"]." SET senha='$senha', codigo = NULL WHERE pk_id=".$_POST["id"];           
-           mysqli_query($conecta,$sql1);
+            mysqli_query($conecta,$sql1);
+            if($_POST("tabela") == "administrador"){
+            header('Location: ../login_adm.php?msg='.base64_encode('Senha alterada com sucesso!'));
+           }else{
            header('Location: ../login.php?msg='.base64_encode('Senha alterada com sucesso!'));
+           }
            exit;
         }
     }else{

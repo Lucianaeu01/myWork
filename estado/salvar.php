@@ -1,7 +1,7 @@
 <?php 
 if($_POST) {
     include('../includes/conexaoMywork.php');
-    include("../includes/autenticacao.php");
+    include("../includes/autenticacao_adm.php");
     if(empty($_POST["pk_id"])) {
         $sql = "INSERT INTO tb_estado (nome_estado,UF) VALUES ('".$_POST["estado"]."','".$_POST["uf"]."');";
         

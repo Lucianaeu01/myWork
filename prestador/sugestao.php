@@ -1,6 +1,7 @@
 <?php
 error_reporting(0);
 include("../includes/conexaoMywork.php");
+include("../includes/autenticacao_adm.php");
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">

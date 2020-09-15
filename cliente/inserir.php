@@ -1,7 +1,7 @@
 <?php 
 error_reporting(0);
 include("../includes/conexaoMywork.php");
-include("../includes/autenticacao.php");
+include("../includes/autenticacao_adm.php");
 
 if(!empty($_GET["id"])) {
     $sql = "SELECT * FROM tb_cliente WHERE pk_id = " . base64_decode($_GET["id"]);
@@ -32,9 +32,6 @@ if(!empty($_GET["id"])) {
     <title>Inserir Cliente</title>
     <link rel="stylesheet" href="../css/bootstrap.css">
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
-    <script src="../js/jquery-3.5.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
-    <script src="../css/bootstrap.bundle.js"></script>
 </head>
 
 <body class="bg-dark">
@@ -174,6 +171,10 @@ if(!empty($_GET["id"])) {
             </div>
         </div>
     </div>
+    <script src="../js/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+    <script src="../css/bootstrap.bundle.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
     <script>
         $(document).ready(function() {
             $('.js-example-basic-multiple').select2();

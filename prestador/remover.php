@@ -1,7 +1,7 @@
 <?php 
 if(!empty($_POST["pk_id"])) {
     include('../includes/conexaoMywork.php');
-    include("../includes/autenticacao.php");
+    include("../includes/autenticacao_adm.php");
     
     $consulta = "SELECT foto FROM tb_prestador WHERE pk_id = ". $_POST["pk_id"];
     

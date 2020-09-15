@@ -16,7 +16,7 @@ if($_POST["perfil"]== "administrador"){
 $rs=mysqli_query($conecta,$sql);
 if(mysqli_num_rows($rs)==0){
     $msg=base64_encode("As informações digitadas estão incorretas");
-    header("LOCATION:../login.php?msg=$msg");exit;
+    header("LOCATION:confirma_dado.php?msg=$msg");exit;
 }else{
     $codigo=substr(sha1(time().uniqid()),-5);
     $row=mysqli_fetch_object($rs);

@@ -24,8 +24,9 @@ senha CHAR(50),
 telefone CHAR(15),
 celular CHAR(15),
 foto CHAR(50),
-status CHAR(1) NOT NULL,
+habilita CHAR(1) NOT NULL,
 fk_cidade INT,
+codigo VARCHAR(5)
 CONSTRAINT FOREIGN KEY (fk_cidade) REFERENCES tb_cidade(pk_id) ON UPDATE CASCADE ON DELETE SET NULL
 )ENGINE=InnoDB;
 
@@ -39,8 +40,9 @@ senha CHAR(50) NOT NULL,
 telefone CHAR(15),
 celular CHAR(15) NOT NULL,
 foto CHAR (50),
-status CHAR(1) NOT NULL,
+habilita CHAR(1) NOT NULL,
 fk_cidade INT,
+codigo VARCHAR(5)
 CONSTRAINT FOREIGN KEY (fk_cidade) REFERENCES tb_cidade(pk_id) ON UPDATE CASCADE ON DELETE SET NULL
 )ENGINE=InnoDB;
 
@@ -74,6 +76,14 @@ fk_prestador INT,
 fk_categoria INT,
 CONSTRAINT FOREIGN KEY (fk_categoria) REFERENCES tb_categoria(pk_id) ON UPDATE CASCADE ON DELETE SET NULL,
 CONSTRAINT FOREIGN KEY (fk_prestador) REFERENCES tb_prestador(pk_id) ON UPDATE CASCADE ON DELETE SET NULL
+)ENGINE=InnoDB;
+
+CREATE TABLE tb_administrador (
+pk_id INT PRIMARY KEY AUTO_INCREMENT,
+email VARCHAR(50),
+senha CHAR(50) NOT NULL,
+habilita CHAR(1) NOT NULL,
+codigo VARCHAR(5)
 )ENGINE=InnoDB;
 
 CREATE TABLE tb_atendimento (

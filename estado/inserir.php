@@ -1,7 +1,7 @@
 <?php 
 error_reporting(0);
 include("../includes/conexaoMywork.php");
-include("../includes/autenticacao.php");
+include("../includes/autenticacao_adm.php");
 
 if(!empty($_GET["id"])) {
     $sql = "SELECT * FROM tb_estado WHERE pk_id = " . base64_decode($_GET["id"]);

@@ -1,7 +1,7 @@
 <?php 
 error_reporting(0);
 include("../includes/conexaoMywork.php");
-include("../includes/autenticacao.php");
+include("../includes/autenticacao_adm.php");
 
 if(!empty($_GET["id"])) {
     $sql = "SELECT * FROM tb_prestador WHERE pk_id = " . base64_decode($_GET["id"]);
@@ -29,7 +29,7 @@ if(!empty($_GET["id"])) {
 
 <head>
     <meta charset="UTF-8">
-    <title>Inserir Cliente</title>
+    <title>Inserir Prestador</title>
     <link rel="stylesheet" href="../css/bootstrap.css">
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
 
@@ -173,8 +173,64 @@ if(!empty($_GET["id"])) {
                                 <a href="index.php">
                                     <button type="button" class="btn btn-warning">Voltar</button>
                                 </a>
+                                <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#addServico" data-whatever="@getbootstrap">Novo serviço</button>
                             </div>
                         </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="addServico" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Serviço</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form method="post" action="../servico/salvar.php" enctype="multipart/form-data">
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="nome">Serviço:</label>
+                            <input class="form-control" type="text" id="servico" name="servico" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="categoria">Categoria:</label>
+                            <select class="form-control" id="categoria" name="categoria" required>
+                                <option value=""> -- Selecione -- </option>
+                                <?php
+                            $rs1 = mysqli_query($conecta,"SELECT * FROM tb_categoria ORDER BY categoria");
+                            while($row1 = mysqli_fetch_object($rs1)) {
+                                if($row->fk_categoria == $row1->pk_id) {
+                                    $selected = "selected";
+                                } else {
+                                    $selected = "";
+                                }
+                                echo "<option $selected value='$row1->pk_id'> $row1->categoria </option>
+                                ";
+                            }                           
+
+                            ?>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="foto">Foto:</label>
+                            <input type="file" id="foto" name="foto"><br>
+                        </div>
+                        <?php 
+                       
+                            if(!empty($row->foto)) { ?>
+                        <div class="form-group">
+                            <img src="../fotos/<?php echo $row->foto;?>" width="150">
+                        </div>
+                        <?php } ?>
+                    </div>
+                    <div class="modal-footer">
+                        <input type="hidden" name="or" value="../prestador/inserir.php">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-primary">Salvar</button>
                     </div>
                 </form>
             </div>
@@ -203,7 +259,6 @@ if(!empty($_GET["id"])) {
     <script src="../css/bootstrap.bundle.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
     <script>
-    
         $(document).ready(function() {
             $('.select2').select2();
         });
