@@ -1,5 +1,6 @@
 <?php
  include("../area-administrativa/includes/conexaoMywork.php");
+ 
  if(isset($_POST["cliente"])){
     $cliente=$_POST["cliente"];
     $sql="SELECT * FROM tb_cliente WHERE 
@@ -25,12 +26,13 @@ else(isset($_POST["prestador"])){
 }
 
 $rs=mysqli_query($conecta,$sql);
-if(mysqli_num_rows($rs)==0){       
+if(mysqli_num_rows($rs)==0){   
+    $perfil=$_POST["perfil"]    
     $sql1="UPDATE tb_".$_POST["perfil"]." WHERE pk_id=".$row->pk_id;
     $rs1=mysqli_query($conecta, $sql1);
     $corpoMensagem="       
     <p>Clique no link abaixo para confirmar o seu cadastro: </p>
-    http://localhost/Mywork/cadastro/confirma_cadastro_final.php";
+    http://localhost/Mywork/cadastro/confirma_cadastro.php";
 }
 
 
@@ -68,16 +70,16 @@ try{
     $mail->addAddress($_POST["email"]);        
     $mail->Charset="UTF-8";                             
     $mail->isHTML(true);                                
-    $mail->Subject="redefinição de senha";              
+    $mail->Subject="confirmação de cadastro";              
     $mail->Body=$corpoMensagem;  
            
 
     if($mail->send()){
-        $msg= base64_encode("E-mail enviado com sucesso. Em breve você receberá seu código de acesso");        
-        header("LOCATION:redefinir_senha_codigo.php?msg=$msg");exit;
+        $msg= base64_encode("E-mail enviado com sucesso.");        
+        header("LOCATION:confirma_cadastro.php?msg=$msg");exit;
     }else{
         $msg= base64_encode("Falha ao enviar email, tente novamente mais tarde");
-        header("LOCATION:../login.php?msg=$msg");exit;
+        header("LOCATION:../cadastro.php?msg=$msg");exit;
 
         
     }
