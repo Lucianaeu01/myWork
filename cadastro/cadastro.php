@@ -19,19 +19,19 @@
     <div class="container text-white">
     <div class="row">
             <div class="col-12">
-                <form method="post" action="salvar_cadastro.php" >
+                <form method="post" action="salvar_cadastro.php" enctype="multipart/form-data" >
                 <h1 class="ls-cadastro-logo">CADASTRO MY WORK</h1>                 
                     <div class="row">
                         <div class="col-6">
                             <div class="form-group">
-                                <label for="nome">Nome:</label>
+                                <label for="nome">*Nome:</label>
                                 <input class="form-control" type="text" id="nome" name="nome" placeholder="nome" required>
                             </div>
                         </div>                      
                     
                         <div class="col-6">
                             <div class="form-group">
-                                <label for="cpf">CPF:</label>
+                                <label for="cpf">*CPF:</label>
                                 <input class="form-control" type="text" id="cpf" name="cpf" data-mask="000.000.000-00" placeholder="CPF" required>
                             </div>
                         </div>
@@ -40,7 +40,7 @@
                     <div class="row">
                         <div class="col-6">
                             <div class="form-group">
-                                <label for="data_nascimento">Data Nascimento:</label>
+                                <label for="data_nascimento">*Data Nascimento:</label>
                                 <input class="form-control" type="date" id="data_nascimento" name="data_nascimento" placeholder="data_nascimento" required>
                             </div>
                         </div>
@@ -49,7 +49,7 @@
                     <div class="row">                    
                         <div class="col-12">
                             <div class="form-group">
-                                <label for="nome">Endereço:Rua/Av, Bairro</label>
+                                <label for="nome">*Endereço:Rua/Av, Bairro</label>
                                 <input class="form-control" type="text" id="endereco" name="endereco" placeholder="Digite seu endereço completo" required>
                             </div>
                         </div>
@@ -57,14 +57,32 @@
                     <div class="row">
                         <div class="col-6">
                             <div class="form-group">
-                                <label for="cidade">Cidade/UF</label>
+                                <label for="cidade">*Cidade</label>
                                 <input class="form-control" type="text" id="cidade" name="cidade" placeholder="cidade" required>
                             </div>
-                        </div>                   
-                
+                        </div>  
                         <div class="col-6">
                             <div class="form-group">
-                                <label for="nome">Email:</label>
+                                <label for="cidade">*UF</label>
+                                <?php 
+                                $sql="SELECT * FROM tb_estado";
+                                $rs=mysqli_query($conecta,$sql);
+                                ?>
+                                <select class="form-control" name="estado" required>
+                                    <option value="">--Selecione um Estado--</option>
+                                    <?php 
+                                    while($row=mysqli_fetch_object($rs)){                                    
+                                    ?>
+                                    <option value="<?php echo $row->pk_id ?>"><?php echo $row->nome_estado; ?></option> 
+                                    <?php  } ?>
+                                </select>
+                            </div>
+                        </div>                             
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label for="nome">*Email:</label>
                                 <input class="form-control" type="email" id="email" name="email" placeholder="email" required>
                             </div>
                         </div>
@@ -73,15 +91,15 @@
                         <div class="col-6">                     
                             <div class="form-group">
                                 <label for="nome">Telefone:</label>
-                                <input class="form-control" type="text" id="telefone" name="telefone" data-mask="(00)0000-0000" placeholder="telefone"required>
+                                <input class="form-control" type="text" id="telefone" name="telefone" data-mask="(00)0000-0000" placeholder="telefone">
                             </div>
                         </div>                   
                    
                     
                         <div class="col-6">                       
                             <div class="form-group">
-                                <label for="nome">Celular:</label>
-                                <input class="form-control" type="text" id="celular" name="celular" data-mask="(00)0000-0000" placeholder="celular"required>
+                                <label for="nome">*Celular:</label>
+                                <input class="form-control" type="text" id="celular" name="celular" data-mask="(00)0000-0000" placeholder="celular" required>
                             </div>
                         </div>
                     </div>
@@ -89,14 +107,14 @@
                     <div class="row">
                         <div class="col-6">
                             <div class="form-group">
-                                <label for="nome">Senha:</label>
-                                <input class="form-control" type="password" id="senha" name="senha" placeholder="Digite a senha">
+                                <label for="nome">*Senha:</label>
+                                <input class="form-control" type="password" id="senha" name="senha" placeholder="Digite a senha" required>
                             </div>
                         </div>
                         <div class="col-6">
                             <div class="form-group">
-                                <label for="nome">Confirme a senha:</label>
-                                <input class="form-control" type="password" id="senha_confirma" name="senha_confirma" placeholder="Confirme a senha">
+                                <label for="nome">*Confirme a senha:</label>
+                                <input class="form-control" type="password" id="senha_confirma" name="senha_confirma" placeholder="Confirme a senha" required>
                             </div>
                         </div>
                     </div>
