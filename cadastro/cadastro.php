@@ -99,7 +99,7 @@
                         <div class="col-6">                       
                             <div class="form-group">
                                 <label for="nome">*Celular:</label>
-                                <input class="form-control" type="text" id="celular" name="celular" data-mask="(00)0000-0000" placeholder="celular" required>
+                                <input class="form-control" type="text" id="celular" name="celular" data-mask="(00)00000-0000" placeholder="celular" required>
                             </div>
                         </div>
                     </div>

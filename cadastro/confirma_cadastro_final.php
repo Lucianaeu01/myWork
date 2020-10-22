@@ -15,9 +15,6 @@
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
 
 </head>
-<body class="bg-dark">
-    <div class="container text-white">
-    <div class="row">
-            <div class="col-12">
-                <form method="post" action="confirma_cadastro.php" >
-                <h1 class="ls-cadastro-logo">CONFIRMA CADASTRO MY WORK</h1>
+<body>
+
+</body>
