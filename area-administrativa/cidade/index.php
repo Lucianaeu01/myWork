@@ -1,131 +1,100 @@
-<?php
-    include_once("../includes/conexaoMywork.php");
-    include("../includes/autenticacao.php");
-?>
 <!DOCTYPE html>
-<html lang="pt-br">
-
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/bootstrap.css">
-    <title>Lista de Cidade</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>AdminLTE 3 | Blank Page</title>
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="../../assets/plugins/fontawesome-free/css/all.min.css">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+  <!-- overlayScrollbars -->
+  <link rel="stylesheet" href="../../assets/dist/css/adminlte.min.css">
+  <!-- Google Font: Source Sans Pro -->
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
-
-<style>
-    .icone:hover {
-        background-color: skyblue;
-    }
-
-</style>
-
-<body class="bg-dark">
-    <div class="container"><br>
-        <div class="row">
-            <div class="col-10">
-                <form method="post" action="inserir.php">
-                    <button class="btn btn-light icone">
-                        <input type="image" width="40" height="40" src="../../imagens/inserir_local2.png" data-toggle="tooltip" data-placement="top" title="Inserir nova cidade">
-                    </button>
-                </form>
-            </div>
-            <div class="col-2">
-                <a href="../index.php">
-                    <button type="submit" class="btn btn-primary">Voltar</button>
-                </a>
-            </div>
-        </div><br>
-        <table class="table">
-            <thead class="thead-light">
-                <tr>
-                    <th>#</th>
-                    <th>Cidade</th>
-                    <th>Estado</th>
-                    <th>Ação</th>
-                </tr>
-                <?php 
-                $sql = mysqli_query($conecta,"SELECT tb_cidade.pk_id, nome_cidade, UF FROM tb_cidade LEFT JOIN tb_estado ON tb_estado.pk_id = tb_cidade.fk_estado ORDER BY tb_cidade.pk_id");
-                while($row = mysqli_fetch_object($sql)){
-            ?>
-            </thead>
-            <tr class="bg-white">
-                <td><?php echo $row->pk_id;?></td>
-                <td><?php echo $row->nome_cidade;?></td>
-                <td><?php echo $row->UF;?></td>
-                <td><a href="inserir.php?id=<?php echo base64_encode($row->pk_id)?>">
-                        <button type="submit" class="btn btn-info">[ alterar ]</button>
-                    </a>
-                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modalExcluir" data-id="<?php echo $row->pk_id;?>">
-                        [ excluir ]
-                    </button>
-            </tr>
-            <?php 
-                }
-            ?>
-        </table>
-        <div class="modal fade" id="modalExcluir" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <form method="post" action="remover.php">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Aviso</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            Deseja realmente excluir esse registro?
-                            <input name="pk_id" id="pk_id" type="hidden">
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Não</button>
-                            <button type="submit" class="btn btn-danger">Sim</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
+<body class="hold-transition sidebar-mini">
+<!-- Site wrapper -->
+<div class="wrapper">
+  <!-- Navbar -->
+    <?php 
+        include('../nav/nav.php');
+    ?>
+  <!-- /.navbar -->
+  <!-- Main Sidebar Container -->
+  <?php 
+        include('../menu/menu.php');
+  ?>
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>Blank Page</h1>
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active">Blank Page</li>
+            </ol>
+          </div>
         </div>
+      </div><!-- /.container-fluid -->
+    </section>
 
-        <div class="modal fade" id="modalMensagem" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Aviso</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <?php echo base64_decode($_GET["msg"]);?>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-info" data-dismiss="modal">OK</button>
-                    </div>
-                </div>
-            </div>
+    <!-- Main content -->
+    <section class="content">
+
+      <!-- Default box -->
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">Title</h3>
+
+          <div class="card-tools">
+            <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
+              <i class="fas fa-minus"></i></button>
+            <button type="button" class="btn btn-tool" data-card-widget="remove" data-toggle="tooltip" title="Remove">
+              <i class="fas fa-times"></i></button>
+          </div>
         </div>
-    </div>
+        <div class="card-body">
+          Start creating your amazing application!
+        </div>
+        <!-- /.card-body -->
+        <div class="card-footer">
+          Footer
+        </div>
+        <!-- /.card-footer-->
+      </div>
+      <!-- /.card -->
 
-    <script type="text/javascript" src="../js/jquery-3.5.1.min.js"></script>
-    <script type="text/javascript" src="../css/bootstrap.bundle.js"></script>
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+  <?php 
+    include('../footer/footer.php');
+  ?>
+  <!-- Control Sidebar -->
+  <aside class="control-sidebar control-sidebar-dark">
+    <!-- Control sidebar content goes here -->
+  </aside>
+  <!-- /.control-sidebar -->
+</div>
+<!-- ./wrapper -->
 
-    <script>
-        $(function() {
-            $('#modalExcluir').on('show.bs.modal', function(e) {
-                var id_registro = $(e.relatedTarget).data('id');
-                $('#pk_id').val(id_registro);
-            });
-            $('#modalAlterar').on('show.bs.modal', function(e) {
-                var id_registro = $(e.relatedTarget).data('id');
-                $('#pk_id_edit').val(id_registro);
-            });
-            <?php if(!empty($_GET["msg"])){ ?>
-            $('#modalMensagem').modal('show');
-            <?php } ?>
-        })
-
-    </script>
-
+<!-- jQuery -->
+<script src="../../assets/plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="../../assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- AdminLTE App -->
+<script src="../../assets/dist/js/adminlte.min.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="../../assets/dist/js/demo.js"></script>
 </body>
-
 </html>
