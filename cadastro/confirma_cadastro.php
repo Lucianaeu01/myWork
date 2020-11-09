@@ -1,20 +1,39 @@
 <?php
- include("../area-administrativa/includes/conexaoMywork.php");  
+ include("../area-administrativa/includes/conexaoMywork.php"); 
+ 
+ $codigo=base64_decode($_GET["msg"]);
+
+if(isset($_GET["msg"])){
+   
+    $sql="SELECT * FROM tb_cliente WHERE codigo= '$codigo'";
+    $rs=mysqli_query($conecta, $sql);
+    if(mysqli_num_rows($rs)!=0){
+        $sql="UPDATE tb_cliente SET codigo= NULL,habilita='a' WHERE codigo = '$codigo' ";
+        mysqli_query($conecta,$sql);
+        
+        $msg=base64_encode("Cadastro confirmado com sucesso!");
+        
+
+    }
+    $sql="SELECT * FROM tb_prestador WHERE codigo = '$codigo'";
+    $rs= mysqli_query($conecta, $sql);
+    if(mysqli_num_rows($rs)!=0){        
+       $sql="UPDATE tb_prestador SET codigo= NULL WHERE codigo = '$codigo' ";
+       mysqli_query($conecta,$sql);
+
+        $msg=base64_encode("Cadastro em análise, aguarde dois dias úteis.");
+       
+    }       
+   
+} else{
+    $msg=base64_encode("Link inválido, tente fazer o cadastro novamente.");
+    
+    } 
+
+header("location:../index.php?msg=$msg");
+       
+    
+
+ 
 
 ?>
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Confirma Cadastro</title>
-
-    <link rel="stylesheet" href="css/bootstrap.css">
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
-    <script src="../js/jquery-3.5.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
-
-</head>
-<body>
-
-</body>
